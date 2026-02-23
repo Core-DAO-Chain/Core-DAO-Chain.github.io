@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core DAO Chain Explained: Powerful BTC Layer</title>
+<meta name="description" content="Core DAO chain is a Bitcoin-powered Layer 1 built for DeFi and staking. Learn how it works, its tokenomics, ecosystem, and how to get started today.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://core-dao-chain.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Core DAO Chain Explained: Powerful BTC Layer">
+<meta property="og:description" content="Core DAO chain is a Bitcoin-powered Layer 1 built for DeFi and staking. Learn how it works, its tokenomics, ecosystem, and how to get started today.">
+<meta property="og:url" content="https://core-dao-chain.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Core DAO Chain Explained: Powerful BTC Layer">
+<meta name="twitter:description" content="Core DAO chain is a Bitcoin-powered Layer 1 built for DeFi and staking. Learn how it works, its tokenomics, ecosystem, and how to get started today.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Core DAO Chain Explained: Powerful BTC Layer", "description": "Core DAO chain is a Bitcoin-powered Layer 1 built for DeFi and staking. Learn how it works, its tokenomics, ecosystem, and how to get started today.", "inLanguage": "en", "dateModified": "2026-02-23", "url": "https://core-dao-chain.github.io/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://core-dao-chain.github.io"}, {"@type": "ListItem", "position": 2, "name": "Core DAO Chain Explained: Powerful BTC Layer", "item": "https://core-dao-chain.github.io/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is core dao chain in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Core DAO chain is a Bitcoin-aligned blockchain that supports Ethereum-style smart contracts while using a hybrid consensus model that references Bitcoin miners and CORE token stakers. It aims to combine Bitcoin’s security narrative with programmable decentralized applications."}}, {"@type": "Question", "name": "How does core dao chain differ from Ethereum?", "acceptedAnswer": {"@type": "Answer", "text": "Core DAO chain differs from Ethereum by integrating Bitcoin hash power delegation into validator selection through Satoshi Plus consensus. Ethereum relies solely on proof of stake, whereas Core blends delegated stake with external mining signals."}}, {"@type": "Question", "name": "Can you stake Bitcoin on core dao chain?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Bitcoin holders can delegate BTC in a way that contributes to validator selection and earn CORE rewards. The model focuses on delegation signals rather than permanently converting BTC into a native Core asset."}}, {"@type": "Question", "name": "What is the CORE token used for?", "acceptedAnswer": {"@type": "Answer", "text": "CORE token is used for gas fees, staking, validator incentives, and governance voting. Staking CORE helps secure the network and provides voting power over protocol decisions."}}, {"@type": "Question", "name": "Is core dao chain decentralized?", "acceptedAnswer": {"@type": "Answer", "text": "Core DAO chain is designed to be decentralized through validator elections and token-weighted governance. Actual decentralization depends on stake distribution, validator diversity, and community participation levels."}}, {"@type": "Question", "name": "What happens if validators misbehave on core dao chain?", "acceptedAnswer": {"@type": "Answer", "text": "If validators act maliciously or fail to meet performance requirements, they can face penalties such as reduced rewards or slashing of staked CORE, depending on protocol rules."}}, {"@type": "Question", "name": "Does core dao chain replace Bitcoin?", "acceptedAnswer": {"@type": "Answer", "text": "No, core dao chain does not replace Bitcoin. It operates as a separate Layer 1 blockchain that aligns incentives with Bitcoin miners while adding smart contract functionality."}}, {"@type": "Question", "name": "Is investing in CORE risky?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, investing in CORE carries market volatility, smart contract risk, governance risk, and regulatory uncertainty. Cryptocurrency investments can lose significant value, so careful research and risk assessment are essential."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   BASE GRAY — Cool Neutral Premium
+   Template ID: base-gray
+   =========================================== */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #f4f5f7;
+  --bg-secondary: #ebedf0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fcfcfd;
+  --bg-subtle: #e8eaed;
+  --accent: #0d9488;
+  --accent-hover: #0f766e;
+  --accent-light: rgba(13,148,136,0.07);
+  --accent-border: rgba(13,148,136,0.2);
+  --gradient-cta: linear-gradient(135deg, #0d9488, #0f766e);
+  --gradient-cta-glow: rgba(13,148,136,0.2);
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #d1d5db;
+  --border-hover: #b0b5bd;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.07);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+body {
+  font-family: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ═══════ PROGRESS BAR ═══════ */
+#progress-bar {
+  position: fixed; top: 0; left: 0; width: 0%; height: 2px;
+  background: var(--accent); z-index: 10000;
+  transition: width 0.1s linear;
+}
+
+/* ═══════ CONTAINERS ═══════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.content-container { max-width: 760px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* ═══════ PILL NAVIGATION ═══════ */
+.pill-nav {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 9000;
+  background: rgba(244,245,247,0.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 50px; padding: 5px 6px;
+  display: flex; align-items: center; gap: 2px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translateX(-50%) translateY(-8px);
+  max-width: 94vw; overflow-x: auto;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.pill-nav::-webkit-scrollbar { display: none; }
+.pill-nav.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+
+.pill-nav a {
+  font-family: 'Manrope', sans-serif; font-size: 0.8125rem; font-weight: 500;
+  color: var(--text-muted); text-decoration: none;
+  padding: 7px 14px; border-radius: 50px;
+  transition: color 0.2s, background 0.2s; white-space: nowrap;
+}
+.pill-nav a:hover { color: var(--text-primary); background: var(--bg-subtle); }
+.pill-nav a.active { color: var(--text-primary); background: var(--bg-subtle); font-weight: 600; }
+
+/*CTA_START*/
+.pill-nav .pill-cta {
+  font-family: 'Manrope', sans-serif; font-size: 0.8125rem; font-weight: 600;
+  color: #fff; background: var(--gradient-cta);
+  padding: 7px 18px; border-radius: 50px; text-decoration: none;
+  margin-left: 4px; white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px var(--gradient-cta-glow);
+}
+.pill-nav .pill-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--gradient-cta-glow); }
+/*CTA_END*/
+
+/* ═══════ HERO ═══════ */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; z-index: 1; padding: 80px 24px;
+  background: var(--bg-secondary);
+}
+.hero::before {
+  content: ''; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(13,148,136,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 780px; position: relative; }
+
+.hero h1 {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 800; line-height: 1.08; letter-spacing: -0.04em;
+  color: var(--text-primary); margin-bottom: 24px;
+}
+.hero-subtitle {
+  font-size: 1.125rem; color: var(--text-secondary);
+  max-width: 520px; margin: 0 auto 40px; line-height: 1.8;
+}
+
+/*CTA_START*/
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 38px; background: var(--gradient-cta); color: #fff;
+  font-family: 'Manrope', sans-serif; font-size: 1.0625rem; font-weight: 700;
+  text-decoration: none; border-radius: 50px;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 24px var(--gradient-cta-glow);
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(13,148,136,0.3); animation: none; }
+.hero-cta svg { width: 18px; height: 18px; }
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 24px var(--gradient-cta-glow); }
+  50% { box-shadow: 0 4px 32px rgba(13,148,136,0.3); }
+}
+/*CTA_END*/
+
+.hero-scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  color: var(--text-muted); font-size: 0.7rem; font-family: 'Manrope', sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: hintPulse 2.5s ease-in-out infinite;
+}
+.hero-scroll-hint span { width: 1px; height: 24px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+@keyframes hintPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+
+/* ═══════ CONTENT AREA ═══════ */
+.content-area { padding: 80px 0; position: relative; z-index: 1; }
+
+.content-area h2 {
+  font-family: 'Manrope', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700; line-height: 1.2; letter-spacing: -0.025em;
+  color: var(--text-primary); margin: 64px 0 20px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 80px;
+}
+.content-area h2:first-child { margin-top: 0; }
+.content-area h3 {
+  font-family: 'Manrope', sans-serif; font-size: 1.1875rem; font-weight: 600;
+  color: var(--text-primary); margin: 36px 0 10px;
+  scroll-margin-top: 80px;
+}
+.content-area h4 { font-family: 'Manrope', sans-serif; font-size: 1.0625rem; font-weight: 600; color: var(--text-primary); margin: 24px 0 8px; }
+.content-area p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.85; }
+.content-area a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-light); transition: border-color 0.2s; }
+.content-area a:hover { border-bottom-color: var(--accent); }
+.content-area strong { color: var(--text-primary); font-weight: 700; }
+.content-area section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e2e4e8; }
+.content-area section:last-of-type { border-bottom: none; }
+
+.content-area .intro { font-size: 1.0625rem; border-left: 3px solid var(--accent); padding-left: 20px; margin-bottom: 40px; border-bottom: none; }
+.content-area .intro p { color: var(--text-secondary); font-size: 1.0625rem; }
+
+.capsule {
+  background: var(--accent-light); border: 1px solid rgba(13,148,136,0.12);
+  border-radius: var(--radius-md); padding: 18px 22px;
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--text-primary) !important; margin: 16px 0;
+}
+
+.evidence {
+  font-size: 0.875rem; color: var(--text-muted) !important;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 16px 12px 42px;
+  margin: 12px 0 20px; position: relative;
+}
+.evidence::before {
+  content: '▪'; position: absolute; left: 16px; top: 12px;
+  font-size: 0.7rem; color: var(--accent);
+}
+
+.content-area ul, .content-area ol { margin: 16px 0; padding-left: 24px; color: var(--text-secondary); }
+.content-area li { margin-bottom: 8px; line-height: 1.75; }
+.content-area ul li::marker { color: var(--accent); }
+.content-area ol li::marker { color: var(--accent); font-weight: 700; font-family: 'Manrope', sans-serif; }
+
+.content-area blockquote {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); padding: 24px 24px 24px 52px;
+  margin: 28px 0; border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  position: relative; box-shadow: var(--shadow-sm);
+}
+.content-area blockquote::before {
+  content: '\201C'; position: absolute; left: 16px; top: 10px;
+  font-size: 2.5rem; line-height: 1; color: var(--accent); opacity: 0.35;
+  font-family: Georgia, serif;
+}
+.content-area blockquote p { color: var(--text-primary); font-size: 1.0625rem; font-style: italic; margin: 0; }
+
+.table-wrap { overflow-x: auto; margin: 24px 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.table-wrap table { width: 100%; border-collapse: collapse; }
+.table-wrap thead { background: var(--bg-subtle); }
+.table-wrap th { padding: 13px 18px; text-align: left; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+.table-wrap td { padding: 13px 18px; color: var(--text-secondary); border-bottom: 1px solid var(--border); font-size: 0.9375rem; }
+.table-wrap tbody tr:last-child td { border-bottom: none; }
+.table-wrap tbody tr:hover { background: rgba(13,148,136,0.02); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 24px 0; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 22px;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  box-shadow: var(--shadow-sm);
+}
+.card:hover { border-color: var(--accent-border); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card h4 { font-family: 'Manrope', sans-serif; font-weight: 600; color: var(--text-primary); margin: 0 0 8px; }
+.card p { font-size: 0.9375rem; color: var(--text-secondary); margin: 0; }
+
+.steps { margin: 28px 0; counter-reset: step-counter; position: relative; padding-left: 24px; }
+.steps::before {
+  content: ''; position: absolute; left: 17px; top: 28px; bottom: 28px; width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--border));
+  border-radius: 2px;
+}
+.step {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 16px 0; counter-increment: step-counter; position: relative;
+}
+.step::before {
+  content: counter(step-counter); min-width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-primary); border: 2px solid var(--accent);
+  border-radius: 50%; font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-size: 0.8125rem; color: var(--accent); flex-shrink: 0;
+  position: relative; z-index: 1;
+}
+.step h4 { margin: 0 0 4px; }
+.step p { margin: 0; font-size: 0.9375rem; }
+
+.toc {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px 28px; margin: 24px 0 40px;
+  box-shadow: var(--shadow-sm);
+}
+.toc h2 { font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 0 0 12px; padding: 0; border: none; }
+.toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 5px; }
+.toc a { color: var(--text-secondary); border-bottom: none; font-size: 0.9375rem; }
+.toc a:hover { color: var(--accent); }
+
+.pill-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.pill { display: inline-block; padding: 5px 14px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 50px; color: var(--text-secondary); font-size: 0.8125rem; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/*CTA_START*/
+.mid-cta { text-align: center; margin: 36px 0; }
+
+.cta-section {
+  text-align: center; padding: 56px 32px; margin: 48px 0;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); box-shadow: var(--shadow-md);
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -50%; left: -30%; width: 160%; height: 160%;
+  background: radial-gradient(ellipse, rgba(13,148,136,0.03), transparent 60%);
+  pointer-events: none;
+}
+.cta-section h2 { border: none; padding: 0; margin: 0 0 10px; position: relative; }
+.cta-section p { margin-bottom: 26px; position: relative; }
+
+.cta-button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 36px; background: var(--gradient-cta); color: #fff;
+  font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; border-radius: 50px;
+  box-shadow: 0 4px 20px var(--gradient-cta-glow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(13,148,136,0.3); }
+
+.floating-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
+  background: rgba(244,245,247,0.92); backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px; text-align: center;
+  transform: translateY(100%); transition: transform 0.35s ease;
+}
+.floating-cta.visible { transform: translateY(0); }
+.floating-cta .cta-button { padding: 12px 28px; font-size: 0.9375rem; }
+/*CTA_END*/
+
+.faq-section { margin: 48px 0; border-bottom: none !important; }
+.faq-section h2 { text-align: center; border: none; padding: 0; margin-bottom: 24px; }
+.faq-section details { border-bottom: 1px solid var(--border); }
+.faq-section details:first-of-type { border-top: 1px solid var(--border); }
+.faq-section summary {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 4px; cursor: pointer; font-family: 'Manrope', sans-serif;
+  font-weight: 500; font-size: 1rem; color: var(--text-primary);
+  list-style: none; transition: color 0.2s;
+}
+.faq-section summary::-webkit-details-marker { display: none; }
+.faq-section summary::after { content: '+'; font-size: 1.25rem; font-weight: 300; color: var(--text-muted); flex-shrink: 0; margin-left: 16px; }
+.faq-section details[open] summary::after { content: '\2212'; color: var(--accent); }
+.faq-section summary:hover { color: var(--accent); }
+.faq-section details p { padding: 0 4px 18px; font-size: 0.9375rem; color: var(--text-secondary); }
+.faq-section h3 { margin-top: 24px; }
+.faq-section dl { margin: 0; }
+.faq-section dt { font-weight: 500; color: var(--text-primary); padding: 16px 4px 4px; border-top: 1px solid var(--border); }
+.faq-section dt:first-child { border-top: none; }
+.faq-section dd { padding: 0 4px 16px; color: var(--text-secondary); font-size: 0.9375rem; margin: 0; }
+
+.disclosure { font-size: 0.8125rem; color: var(--text-muted); font-style: italic; text-align: center; padding: 16px 0; border-top: 1px solid var(--border); margin-top: 40px; }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; position: relative; z-index: 1; }
+footer p { color: var(--text-muted); font-size: 0.8125rem; }
+footer .updated { margin-top: 6px; font-size: 0.75rem; }
+
+#back-to-top {
+  position: fixed; bottom: 32px; right: 32px; width: 42px; height: 42px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 50%; color: var(--text-muted); font-size: 1.125rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+  z-index: 999; box-shadow: var(--shadow-md);
+}
+#back-to-top.visible { opacity: 1; visibility: visible; }
+#back-to-top:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+.content-area img { max-width: 100%; height: auto; border-radius: var(--radius-md); margin: 24px 0; border: 1px solid var(--border); }
+
+@media (max-width: 768px) {
+  .container, .content-container { padding: 0 16px; }
+  .hero h1 { font-size: 2.25rem; }
+  .pill-nav { padding: 4px 5px; }
+  .pill-nav a { padding: 6px 10px; font-size: 0.75rem; }
+  .pill-nav .pill-cta { padding: 6px 14px; font-size: 0.75rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .steps { padding-left: 16px; }
+  .step::before { min-width: 30px; height: 30px; font-size: 0.75rem; }
+  #back-to-top { bottom: 72px; right: 16px; }
+}
+
+@media print {
+  .pill-nav, .hero-cta, .cta-section, .mid-cta, .floating-cta, #back-to-top, #progress-bar, .hero-scroll-hint { display: none !important; }
+  body { color: #000; background: #fff; }
+  .hero { min-height: auto; padding: 40px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  @keyframes ctaPulse { 0%, 100% { box-shadow: 0 4px 24px var(--gradient-cta-glow); } }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+.disclaimer-block {
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding: 20px 0;
+    margin-top: 32px;
+    font-style: italic;
+}
+.disclaimer-block p { margin: 0; }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<nav class="pill-nav" id="pill-nav"></nav>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <h1>Core DAO Chain</h1>
+    <p class="hero-subtitle">Build, stake, and explore Bitcoin-aligned DeFi.</p>
+    <!--CTA_START-->
+    <a href="/sushiswap/" class="hero-cta">Explore Core DAO <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <!--CTA_END-->
+  </div>
+  <div class="hero-scroll-hint">scroll<span></span></div>
+</section>
+
+<main class="content-area">
+  <div class="content-container">
+    <section class="intro">
+  <p><strong>core dao chain</strong> is an EVM-compatible Layer 1 blockchain designed to align with Bitcoin by combining delegated Bitcoin mining hash power and delegated proof of stake through its Satoshi Plus consensus, enabling decentralized applications, BTC staking, and DeFi services secured by Bitcoin’s network effects. Instead of competing with Bitcoin, it anchors itself to it.</p>
+  <p>Built by Core DAO, the network aims to bring smart contracts and decentralized finance closer to Bitcoin’s security model. You can deploy Solidity contracts, interact with familiar wallets, and explore DeFi protocols—while relying on a consensus that references Bitcoin miners. Think of it as building modern apps on a foundation that already carries trillions of dollars in economic weight.</p>
+  <p>On this page, you’ll learn how core dao chain works, what Satoshi Plus consensus actually does, how BTC staking functions, and where the CORE token fits into governance and incentives. We’ll also examine risks, validator mechanics, and how the ecosystem compares to Ethereum and other Layer 1 blockchains.</p>
+</section>
+
+<nav class="toc" aria-label="Table of Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#what-is-core-dao-chain">What Is Core DAO Chain?</a></li>
+    <li><a href="#why-bitcoin-alignment-matters">Why Bitcoin Alignment Matters</a></li>
+    <li><a href="#how-core-dao-chain-works">How Core DAO Chain Works</a></li>
+    <li><a href="#satoshi-plus-consensus">Satoshi Plus Consensus Explained</a></li>
+    <li><a href="#core-token-and-tokenomics">CORE Token and Tokenomics</a></li>
+    <li><a href="#btc-staking-on-core-dao-chain">BTC Staking on Core DAO Chain</a></li>
+    <li><a href="#core-dao-chain-ecosystem">Core DAO Chain Ecosystem</a></li>
+    <li><a href="#governance-in-core-dao-chain">Governance in Core DAO Chain</a></li>
+  </ol>
+</nav>
+
+<section id="what-is-core-dao-chain">
+  <h2>What Is Core DAO Chain?</h2>
+  <p class="capsule">Core DAO chain is a Bitcoin-aligned, EVM-compatible Layer 1 blockchain that combines delegated Bitcoin mining hash power with delegated proof of stake to secure smart contracts and decentralized applications. It enables BTC staking, DeFi protocols, and on-chain governance through its native CORE token.</p>
+  <p class="evidence">According to the official documentation at <a href="https://docs.coredao.org" rel="noopener noreferrer" target="_blank">https://docs.coredao.org</a>, Core uses “Satoshi Plus” consensus to integrate Bitcoin miners and CORE token stakers into validator selection.</p>
+  <p>Unlike many Layer 1 networks that start from scratch, core dao chain ties part of its security model to Bitcoin’s mining ecosystem. Validators are selected through a hybrid system that references Bitcoin hash power and CORE staking. That design choice attempts to borrow credibility from the largest blockchain by market capitalization.</p>
+  <h3>Bitcoin-Aligned Layer 1</h3>
+  <p>Bitcoin (a decentralized digital currency network) does not natively support smart contracts in the same way Ethereum does. Core DAO builds around that limitation by creating a separate chain that aligns incentives with Bitcoin miners, rather than modifying Bitcoin itself.</p>
+  <h3>EVM Compatibility Explained</h3>
+  <p>EVM compatibility means developers can deploy Solidity-based smart contracts without rewriting them from scratch. Wallets like MetaMask can connect using standard RPC configurations, which lowers the barrier for Ethereum developers experimenting with Bitcoin DeFi.</p>
+  <h3>Role of the CORE Token</h3>
+  <p>CORE token powers staking, governance, and gas fees on the network. Validators and delegators lock CORE to participate in block production and earn rewards, creating an incentive loop that supports decentralization.</p>
+</section>
+
+<section id="why-bitcoin-alignment-matters">
+  <h2>Why Bitcoin Alignment Matters</h2>
+  <p class="capsule">Bitcoin alignment in core dao chain matters because it attempts to inherit part of Bitcoin’s security and economic gravity while enabling smart contracts, reducing the trade-off between security and programmability that typically separates Bitcoin and Ethereum ecosystems.</p>
+  <p class="evidence">Bitcoin remains the largest cryptocurrency by market cap, as tracked by <a href="https://coinmarketcap.com/" rel="noopener noreferrer" target="_blank">https://coinmarketcap.com/</a>, which gives its network effects significant weight.</p>
+  <p>For years, developers faced a dilemma: build on Bitcoin for security or on Ethereum for programmability. Core DAO tries to narrow that gap. By referencing Bitcoin miners in validator selection, the chain links its consensus to an established proof-of-work network.</p>
+  <p>Security, however, is not automatically transferred.</p>
+  <p>Alignment does not mean core dao chain inherits Bitcoin’s full security guarantees. Instead, it creates incentive compatibility. Miners can delegate hash power signals, and CORE stakers participate in validator elections. Think of it like renting space in a well-guarded building—you benefit from proximity, but you still lock your own door.</p>
+  <h3>Network Effects of Bitcoin</h3>
+  <p>Bitcoin’s brand, liquidity, and mining infrastructure create a gravitational pull. Projects that align with it may attract users who prefer BTC exposure over alternative assets.</p>
+  <h3>Limitations of Native Bitcoin</h3>
+  <p>Bitcoin’s scripting language is intentionally limited. That constraint enhances security but restricts complex DeFi applications. Core DAO extends functionality without altering Bitcoin’s base protocol.</p>
+  <h3>Strategic Positioning of Core DAO Chain</h3>
+  <p>Positioned between Bitcoin and Ethereum, core dao chain markets itself as a bridge for BTC holders seeking yield and on-chain utility without abandoning Bitcoin’s ecosystem identity.</p>
+</section>
+
+<section id="how-core-dao-chain-works">
+  <h2>How Core DAO Chain Works</h2>
+  <p class="capsule">Core DAO chain works by selecting validators through Satoshi Plus consensus, where Bitcoin miners delegate hash power signals and CORE token holders delegate stake, combining these inputs to determine block producers who validate transactions and execute EVM smart contracts.</p>
+  <p class="evidence">The Satoshi Plus model is detailed in Core DAO’s whitepaper and documentation at <a href="https://docs.coredao.org/docs/learn/consensus" rel="noopener noreferrer" target="_blank">https://docs.coredao.org/docs/learn/consensus</a>.</p>
+  <p>At a high level, the network processes transactions similarly to other EVM chains. Users submit transactions, validators order them into blocks, and smart contracts execute code deterministically across nodes. Gas fees are paid in CORE.</p>
+  <div class="steps">
+    <div class="step">
+      <div>
+        <h4>Step 1: Delegation</h4>
+        <p>Bitcoin miners delegate hash power signals, while CORE holders delegate tokens to validators.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div>
+        <h4>Step 2: Validator Selection</h4>
+        <p>The protocol calculates validator weight using both hash power and staked CORE.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div>
+        <h4>Step 3: Block Production</h4>
+        <p>Selected validators produce and validate blocks, earning rewards distributed to delegators.</p>
+      </div>
+    </div>
+  </div>
+  <h3>Validator Incentives on Core DAO Chain</h3>
+  <p>Validators earn block rewards and transaction fees, but they also face penalties for misbehavior. Economic incentives align honest participation with financial gain.</p>
+  <h3>Gas Fees and Transactions</h3>
+  <p>Users pay gas in CORE for contract execution. Fees fluctuate depending on network demand, similar to Ethereum’s model.</p>
+  <h3>Interacting With the Network</h3>
+  <p>Developers connect via RPC endpoints, deploy contracts, and verify transactions through explorers such as Core Scan, which displays block data and validator information.</p>
+</section>
+
+<section id="satoshi-plus-consensus">
+  <h2>Satoshi Plus Consensus Explained</h2>
+  <p class="capsule">Satoshi Plus consensus is the hybrid mechanism securing core dao chain, combining delegated proof of stake with delegated Bitcoin mining hash power to select validators, aiming to merge Bitcoin’s proof-of-work influence with stake-based governance.</p>
+  <p class="evidence">Core DAO describes Satoshi Plus as integrating Bitcoin miners and CORE stakers into validator elections in its technical overview at <a href="https://docs.coredao.org" rel="noopener noreferrer" target="_blank">https://docs.coredao.org</a>.</p>
+  <p>Traditional delegated proof of stake (DPoS) relies solely on token holders. Core DAO adds another dimension: Bitcoin miners can signal support for validators by delegating hash power. That signal influences validator rankings.</p>
+  <blockquote>
+    <p>Hybrid consensus attempts to balance economic stake with external security signals.</p>
+  </blockquote>
+  <p>In practice, core dao chain calculates validator weight using both inputs. Higher combined weight increases the chance of producing blocks and earning rewards.</p>
+  <h3>Delegated Proof of Stake Component</h3>
+  <p>CORE holders lock tokens to support validators. Voting power scales with stake, creating accountability between delegators and operators.</p>
+  <h3>Bitcoin Hash Power Delegation</h3>
+  <p>Miners broadcast signals referencing validators, effectively lending reputational and economic weight tied to Bitcoin’s proof-of-work network.</p>
+  <h3>Security Trade-Offs</h3>
+  <p>Hybrid models introduce complexity. While diversification can reduce single-point weaknesses, coordination between two systems adds operational risk.</p>
+</section>
+
+<section id="core-token-and-tokenomics">
+  <h2>CORE Token and Tokenomics</h2>
+  <p class="capsule">CORE token is the native asset of core dao chain, used for gas fees, staking, validator incentives, and governance voting, with tokenomics designed to reward long-term participation and secure the network through economic alignment.</p>
+  <p class="evidence">Token distribution and emission schedules are outlined in Core DAO’s official materials and community governance posts.</p>
+  <p>Gas fees are denominated in CORE, creating baseline demand from network usage. Staking locks supply, potentially reducing circulating tokens available on exchanges.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Utility</th>
+          <th>Purpose</th>
+          <th>Participant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gas Fees</td>
+          <td>Pay for transactions</td>
+          <td>All users</td>
+        </tr>
+        <tr>
+          <td>Staking</td>
+          <td>Secure network</td>
+          <td>CORE holders</td>
+        </tr>
+        <tr>
+          <td>Validator Rewards</td>
+          <td>Incentivize block production</td>
+          <td>Validators</td>
+        </tr>
+        <tr>
+          <td>Governance</td>
+          <td>Protocol decisions</td>
+          <td>Token voters</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Emission and Incentives</h3>
+  <p>New CORE tokens are distributed as rewards. Emission schedules influence inflation and long-term value dynamics.</p>
+  <h3>Staking Yields on Core DAO Chain</h3>
+  <p>Staking yields depend on validator performance, total staked supply, and network activity. Higher participation often lowers individual yield percentages.</p>
+  <h3>Governance Voting Power</h3>
+  <p>Voting weight corresponds to staked CORE. Proposals may address parameter changes, upgrades, or ecosystem funding allocations.</p>
+</section>
+
+<section id="btc-staking-on-core-dao-chain">
+  <h2>BTC Staking on Core DAO Chain</h2>
+  <p class="capsule">BTC staking on core dao chain allows Bitcoin holders to delegate BTC to support validator selection through the Satoshi Plus model, earning rewards without transferring BTC onto the core network as a native asset.</p>
+  <p class="evidence">Core DAO documentation explains that Bitcoin staking interacts with validator selection rather than converting BTC into a standard ERC-20 token.</p>
+  <p>Unlike wrapped BTC models that require custodial bridges, this approach focuses on delegation signals tied to Bitcoin addresses. Rewards are typically distributed in CORE.</p>
+  <p>Yield for BTC without selling.</p>
+  <h3>How Delegation Works</h3>
+  <p>Participants sign transactions proving control of BTC addresses. That signal contributes to validator weight calculations.</p>
+  <h3>Risk Considerations</h3>
+  <p>Market volatility, smart contract risk, and validator misbehavior can impact effective returns. No staking model eliminates downside risk.</p>
+  <h3>Comparing to Wrapped BTC</h3>
+  <p>Wrapped BTC requires custodians and bridges. Core DAO’s model aims to reduce custody layers, though it still depends on protocol logic and validator integrity.</p>
+</section>
+
+<section id="core-dao-chain-ecosystem">
+  <h2>Core DAO Chain Ecosystem</h2>
+  <p class="capsule">Core DAO chain ecosystem includes DeFi protocols, decentralized exchanges, NFT platforms, wallets, and developer tools built on its EVM-compatible infrastructure, focusing on Bitcoin DeFi use cases and CORE-based incentives.</p>
+  <p class="evidence">Ecosystem projects and integrations are regularly updated in Core DAO’s official announcements and documentation portal.</p>
+  <p>Developers deploy lending markets, decentralized exchanges, and yield protocols using Solidity. Users interact through wallets configured for the Core mainnet.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h4>DeFi Protocols</h4>
+      <p>Lending, borrowing, and liquidity pools denominated in CORE or BTC-linked assets.</p>
+    </div>
+    <div class="card">
+      <h4>Wallet Support</h4>
+      <p>EVM-compatible wallets connect through custom RPC endpoints.</p>
+    </div>
+    <div class="card">
+      <h4>Explorers</h4>
+      <p>Block explorers provide transparency into validators, blocks, and transactions.</p>
+    </div>
+  </div>
+  <h3>Developer Experience on Core DAO Chain</h3>
+  <p>Familiar tooling lowers friction. Hardhat and Truffle workflows often transfer with minimal configuration changes.</p>
+  <h3>Bitcoin DeFi Focus</h3>
+  <p>Many applications center around BTC staking, yield strategies, and synthetic Bitcoin assets.</p>
+  <h3>Growth Challenges</h3>
+  <p>Adoption depends on liquidity, audits, and sustained developer interest. Ecosystem depth takes time.</p>
+</section>
+
+<section id="governance-in-core-dao-chain">
+  <h2>Governance in Core DAO Chain</h2>
+  <p class="capsule">Governance in core dao chain is managed through CORE token staking and on-chain voting, enabling participants to propose and approve protocol upgrades, parameter changes, and ecosystem funding decisions.</p>
+  <p class="evidence">Governance frameworks typically mirror delegated proof-of-stake systems, where token-weighted voting determines outcomes.</p>
+  <p>Proposals may address validator limits, reward distribution, or technical upgrades. Voting power corresponds to staked CORE, aligning decision-making with economic commitment.</p>
+  <p>Power follows stake.</p>
+  <h3>Proposal Lifecycle</h3>
+  <p>A governance proposal moves from submission to discussion, then to a voting period with defined quorum requirements.</p>
+  <h3>Validator Influence in Core DAO Chain</h3>
+  <p>Validators often hold significant delegated stake, giving them meaningful influence in governance outcomes.</p>
+  <h3>Decentralization Considerations</h3>
+  <p>Concentration of stake can reduce effective decentralization. Active community participation helps balance influence.</p>
+</section>
+
+
+<section id="comparison">
+  <h2>Core DAO Chain vs Other Layer 1s</h2>
+  <p class="capsule">Core DAO chain differs from other Layer 1 blockchains by integrating Bitcoin hash power delegation into validator selection while remaining EVM-compatible, positioning itself between Bitcoin’s security-first design and Ethereum’s programmable smart contract ecosystem.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Core DAO Chain</th>
+          <th>Ethereum</th>
+          <th>Bitcoin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Consensus</td>
+          <td>Satoshi Plus (DPoS + BTC hash)</td>
+          <td>Proof of Stake</td>
+          <td>Proof of Work</td>
+        </tr>
+        <tr>
+          <td>Smart Contracts</td>
+          <td>EVM Compatible</td>
+          <td>Native (EVM)</td>
+          <td>Limited Script</td>
+        </tr>
+        <tr>
+          <td>Native Asset</td>
+          <td>CORE</td>
+          <td>ETH</td>
+          <td>BTC</td>
+        </tr>
+        <tr>
+          <td>BTC Staking</td>
+          <td>Yes (delegation model)</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Primary Focus</td>
+          <td>Bitcoin-aligned DeFi</td>
+          <td>General-purpose dApps</td>
+          <td>Store of value</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>After comparing multiple networks, we found that core dao chain primarily competes in narrative rather than raw throughput. Ethereum dominates developer mindshare, while Bitcoin dominates monetary trust. Core attempts to intersect those strengths.</p>
+  <h3>Security Model Differences</h3>
+  <p>Ethereum relies on pure proof of stake. Bitcoin uses proof of work. Core DAO chain blends delegated stake with Bitcoin miner signals, introducing hybrid complexity.</p>
+  <h3>Developer Migration Considerations</h3>
+  <p>EVM compatibility reduces switching costs for Solidity teams. However, liquidity and user base remain decisive factors.</p>
+  <h3>Use Case Positioning</h3>
+  <p>Projects targeting Bitcoin holders seeking yield may find core dao chain strategically aligned with their audience.</p>
+</section>
+
+<section id="use-cases">
+  <h2>Real-World Use Cases</h2>
+  <p class="capsule">Core DAO chain supports use cases such as BTC staking, decentralized exchanges, lending markets, governance experiments, and Bitcoin-focused DeFi applications that require smart contract functionality without abandoning Bitcoin alignment.</p>
+  <p class="evidence">EVM-based DeFi primitives such as automated market makers and lending protocols have been widely studied in academic blockchain research, including publications cataloged by institutions like MIT’s Digital Currency Initiative.</p>
+  <p>BTC holders often look for yield opportunities beyond simple price appreciation. Core DAO introduces a staking model that attempts to offer rewards without forcing permanent asset conversion.</p>
+  <p>Developers, meanwhile, gain access to a Bitcoin-centric narrative while writing standard Solidity contracts.</p>
+  <h3>BTC Yield Strategies</h3>
+  <p>Participants can delegate Bitcoin to influence validator selection and earn CORE rewards, adding a yield layer to dormant holdings.</p>
+  <h3>Decentralized Exchanges</h3>
+  <p>Automated market makers enable token swaps inside the ecosystem, typically pairing CORE with wrapped or synthetic BTC representations.</p>
+  <h3>Governance Experiments on Core DAO Chain</h3>
+  <p>On-chain voting allows communities to test treasury management and funding proposals under a Bitcoin-aligned security model.</p>
+</section>
+
+<section id="advantages-and-limitations">
+  <h2>Advantages and Limitations</h2>
+  <p class="capsule">Core DAO chain offers advantages such as Bitcoin alignment, EVM compatibility, and hybrid consensus incentives, but it also faces limitations including ecosystem maturity, validator concentration risks, and the complexity inherent in combining two security models.</p>
+  <p class="evidence">Hybrid consensus systems are discussed in academic blockchain literature as innovative yet operationally complex, often increasing coordination requirements compared to single-model designs.</p>
+  <p>Alignment with Bitcoin can attract a distinct user base. EVM support lowers technical friction. Those strengths make onboarding smoother for developers.</p>
+  <p>Complexity is the trade-off.</p>
+  <p>Combining delegated proof of stake with Bitcoin hash signals requires coordination between different actors. If either side disengages, validator distribution may shift quickly. In our experience reviewing emerging Layer 1s, governance concentration often becomes a critical variable within the first few years.</p>
+  <h3>Strengths of Core DAO Chain</h3>
+  <p>Hybrid security narrative, familiar tooling, and BTC staking innovation stand out as differentiators.</p>
+  <h3>Operational Risks</h3>
+  <p>Validator centralization, smart contract bugs, and fluctuating staking yields introduce uncertainty.</p>
+  <h3>Adoption Barriers</h3>
+  <p>Liquidity depth, institutional trust, and developer incentives determine whether growth accelerates or plateaus.</p>
+</section>
+
+<section id="security">
+  <h2>Is Core DAO Chain Safe?</h2>
+  <p class="capsule">Core DAO chain’s safety depends on validator decentralization, smart contract integrity, staking mechanics, and the reliability of Satoshi Plus consensus, meaning users must evaluate both protocol design and ecosystem-level risks before participating.</p>
+  <ul>
+    <li><strong>Hybrid Consensus Design</strong> — Satoshi Plus combines delegated proof of stake with Bitcoin miner signals, distributing influence across two economic groups.</li>
+    <li><strong>Validator Incentives</strong> — Slashing and reward mechanisms financially penalize misbehavior while compensating honest block production.</li>
+    <li><strong>Smart Contract Risk</strong> — DeFi protocols deployed on core dao chain remain vulnerable to coding errors unless independently audited.</li>
+    <li><strong>Governance Transparency</strong> — On-chain proposals and validator data can be reviewed through public explorers, increasing visibility.</li>
+  </ul>
+  <p>Even with these mechanisms, cryptocurrency networks carry inherent market and technical risk.</p>
+</section>
+
+<section class="faq-section" id="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <details>
+    <summary>What is core dao chain in simple terms?</summary>
+    <p>Core DAO chain is a Bitcoin-aligned blockchain that supports Ethereum-style smart contracts while using a hybrid consensus model that references Bitcoin miners and CORE token stakers. It aims to combine Bitcoin’s security narrative with programmable decentralized applications.</p>
+  </details>
+
+  <details>
+    <summary>How does core dao chain differ from Ethereum?</summary>
+    <p>Core DAO chain differs from Ethereum by integrating Bitcoin hash power delegation into validator selection through Satoshi Plus consensus. Ethereum relies solely on proof of stake, whereas Core blends delegated stake with external mining signals.</p>
+  </details>
+
+  <details>
+    <summary>Can you stake Bitcoin on core dao chain?</summary>
+    <p>Yes, Bitcoin holders can delegate BTC in a way that contributes to validator selection and earn CORE rewards. The model focuses on delegation signals rather than permanently converting BTC into a native Core asset.</p>
+  </details>
+
+  <details>
+    <summary>What is the CORE token used for?</summary>
+    <p>CORE token is used for gas fees, staking, validator incentives, and governance voting. Staking CORE helps secure the network and provides voting power over protocol decisions.</p>
+  </details>
+
+  <details>
+    <summary>Is core dao chain decentralized?</summary>
+    <p>Core DAO chain is designed to be decentralized through validator elections and token-weighted governance. Actual decentralization depends on stake distribution, validator diversity, and community participation levels.</p>
+  </details>
+
+  <details>
+    <summary>What happens if validators misbehave on core dao chain?</summary>
+    <p>If validators act maliciously or fail to meet performance requirements, they can face penalties such as reduced rewards or slashing of staked CORE, depending on protocol rules.</p>
+  </details>
+
+  <details>
+    <summary>Does core dao chain replace Bitcoin?</summary>
+    <p>No, core dao chain does not replace Bitcoin. It operates as a separate Layer 1 blockchain that aligns incentives with Bitcoin miners while adding smart contract functionality.</p>
+  </details>
+
+  <details>
+    <summary>Is investing in CORE risky?</summary>
+    <p>Yes, investing in CORE carries market volatility, smart contract risk, governance risk, and regulatory uncertainty. Cryptocurrency investments can lose significant value, so careful research and risk assessment are essential.</p>
+  </details>
+</section>
+
+<div class="disclaimer-block">
+<p><strong>Disclaimer:</strong> This content is for informational purposes only and does not constitute financial advice. Cryptocurrency involves significant risk — never invest more than you can afford to lose. Consult a licensed financial advisor before making investment decisions.</p>
+</div>
+
+<section class="cta-section" id="cta">
+  <h2>Explore Core DAO Chain Further</h2>
+  <p>Review the documentation, analyze validator data, and assess whether core dao chain aligns with your technical or investment goals. Informed participation always beats speculation.</p>
+  <a href="https://docs.coredao.org" class="cta-button" rel="noopener noreferrer" target="_blank">Start With CORE &rarr;</a>
+</section>
+  </div>
+<p class="disclosure">This page may contain affiliate links. We may earn a commission at no extra cost to you.</p>
+</main>
+
+<!--CTA_START-->
+<div class="floating-cta" id="floating-cta">
+  <a href="/sushiswap/" class="cta-button">Explore Core DAO &rarr;</a>
+</div>
+<!--CTA_END-->
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026</p>
+    <p class="updated">Last updated: <time datetime="2026-02-23">2026-02-23</time></p>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">&uarr;</button>
+
+<script>
+(function() {
+  'use strict';
+  var bar = document.getElementById('progress-bar');
+  var btt = document.getElementById('back-to-top');
+  var nav = document.getElementById('pill-nav');
+  var hero = document.getElementById('hero');
+  var floatCta = document.getElementById('floating-cta');
+  var ticking = false;
+
+  var sections = [];
+  var mainEl = document.querySelector('.content-area');
+  if (nav && mainEl) {
+    var h2s = mainEl.querySelectorAll('h2[id]');
+    h2s.forEach(function(h2) {
+      var words = h2.textContent.trim().split(/\s+/);
+      var label = words.slice(0, 3).join(' ');
+      if (words.length > 3) label += '\u2026';
+      var a = document.createElement('a');
+      a.href = '#' + h2.id;
+      a.textContent = label;
+      nav.appendChild(a);
+      sections.push({ el: h2.closest('section') || h2, link: a });
+    });
+    var ctaLink = document.querySelector('.hero-cta');
+    if (ctaLink) {
+      var ctaA = document.createElement('a');
+      ctaA.href = ctaLink.href;
+      ctaA.className = 'pill-cta';
+      ctaA.textContent = ctaLink.textContent.trim().replace(/\s*\u2192\s*$/, '');
+      nav.appendChild(ctaA);
+    }
+  }
+
+  var allSections = document.querySelectorAll('.content-area section, .content-area .toc');
+  allSections.forEach(function(s) { s.classList.add('fade-in'); });
+
+  function onScroll() {
+    var st = window.scrollY;
+    var dh = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+    btt.classList.toggle('visible', st > 500);
+    if (nav && hero) nav.classList.toggle('visible', st > hero.offsetTop + hero.offsetHeight - 100);
+    if (floatCta) floatCta.classList.toggle('visible', st > hero.offsetHeight && st < dh - 200);
+    var current = '';
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (st >= sections[i].el.offsetTop - 200) { current = sections[i].el.id || ''; break; }
+    }
+    sections.forEach(function(s) {
+      var id = s.el.id || (s.el.querySelector('h2[id]') || {}).id || '';
+      s.link.classList.toggle('active', id === current);
+    });
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(function() { onScroll(); ticking = false; }); ticking = true; }
+  });
+  btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a) { var t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
+  });
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

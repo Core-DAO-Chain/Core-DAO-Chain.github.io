@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /sushiswap/
-Sitemap: https://core-dao-chain.github.io/sitemap.xml
+Sitemap: INSERT_URL/sitemap.xml

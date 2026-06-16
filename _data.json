@@ -1,0 +1,107 @@
+{
+ "keyword": "core dao",
+ "h1": "Core DAO",
+ "brand": "Core",
+ "niche": "chain",
+ "verb": "Explore",
+ "title": "Core DAO - Open App",
+ "meta_description": "core dao is the official route to Core Mainnet resources, staking, dApps, and the explorer so you can open the right app fast.",
+ "palette": {
+  "mode": "dark",
+  "bg": "#0B0B0B",
+  "accent": "#FF8A00",
+  "ink": "#FFFFFF"
+ },
+ "hero_h2": "Bitcoin-aligned L1 access for BTCfi and EVM apps",
+ "hero_lead": "core dao is the official route to a Bitcoin-aligned, EVM-compatible layer-one network for BTCfi apps, staking access, bridge routes, and mainnet activity.",
+ "badge": "L1 Chain",
+ "widget": {
+  "from": "BTC",
+  "from_net": "Bitcoin",
+  "to": "CORE",
+  "to_net": "Core Mainnet",
+  "action": "Explore Core Apps"
+ },
+ "trust": [
+  "EVM-compatible L1",
+  "Chain ID 1116",
+  "Official Core Scan"
+ ],
+ "what_is": "<a href='https://coredao.org/'>Core</a> is a Bitcoin-aligned, EVM-compatible layer-one blockchain built around Satoshi Plus consensus, BTC staking, CORE staking, and a growing BTCfi ecosystem.",
+ "how": [
+  {
+   "t": "Verify the route",
+   "d": "Start from the official Core domain and avoid sponsored look-alike links before connecting a wallet."
+  },
+  {
+   "t": "Add the network",
+   "d": "Use the official Core Mainnet details: Chain ID 1116, CORE as the currency symbol, and Core Scan as the explorer."
+  },
+  {
+   "t": "Open the ecosystem",
+   "d": "Browse dApps, staking, bridge access, and developer resources from the official Core navigation."
+  },
+  {
+   "t": "Confirm on-chain",
+   "d": "Review wallet prompts, gas token requirements, and transaction status before approving any action."
+  }
+ ],
+ "points": [
+  {
+   "h": "Bitcoin-aligned design",
+   "p": "Satoshi Plus connects Bitcoin miner participation, CORE staking, and BTC staking with an EVM-compatible execution layer."
+  },
+  {
+   "h": "Official network details",
+   "p": "Core Mainnet is documented with Chain ID 1116, CORE as the currency symbol, official RPC, explorer, and staking site in the <a href='https://docs.coredao.org/docs/Dev-Guide/network-config'>network configuration</a>."
+  },
+  {
+   "h": "Explorer-first verification",
+   "p": "Use the official explorer to check addresses, blocks, token contracts, and transaction status before trusting copied links."
+  }
+ ],
+ "eeat": [
+  {
+   "text": "Official Core site",
+   "url": "https://coredao.org/"
+  },
+  {
+   "text": "Core network configuration",
+   "url": "https://docs.coredao.org/docs/Dev-Guide/network-config"
+  },
+  {
+   "text": "Core Scan explorer",
+   "url": "https://scan.coredao.org/"
+  }
+ ],
+ "faq": [
+  {
+   "q": "What is core dao?",
+   "a": "core dao refers to Core, a Bitcoin-aligned, EVM-compatible layer-one blockchain for BTCfi, staking, and smart-contract applications.",
+   "open": true
+  },
+  {
+   "q": "Is core dao compatible with Ethereum wallets?",
+   "a": "Yes. Core Mainnet is EVM-compatible, and the official docs list Chain ID 1116, CORE as the currency symbol, RPC details, and explorer links.",
+   "open": false
+  },
+  {
+   "q": "Where can I explore core dao transactions?",
+   "a": "Use <a href='https://scan.coredao.org/'>Core Scan</a>, the official explorer for blocks, transactions, addresses, and token contracts on Core Mainnet.",
+   "open": false
+  },
+  {
+   "q": "Does core dao support Bitcoin staking?",
+   "a": "Core supports self-custodial Bitcoin staking through its official staking route, with BTC timelocking used as part of network participation.",
+   "open": false
+  },
+  {
+   "q": "What token pays gas on core dao?",
+   "a": "CORE is the native currency symbol used for Core Mainnet transaction fees and network activity.",
+   "open": false
+  }
+ ],
+ "official_url": "https://coredao.org/explore/ecosystem",
+ "official_domain": "coredao.org",
+ "footer_note": "This page is not the official app; verify coredao.org before connecting a wallet. Educational only, not financial advice."
+}

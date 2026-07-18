@@ -1,0 +1,68 @@
+# Core DAO Chain
+> Core DAO Chain is a Bitcoin-aligned, EVM-compatible Layer-1 blockchain; this independent dashboard provides non-custodial information without holding user funds or private keys.
+
+## What is Core DAO Chain
+Core DAO Chain, officially branded Core, runs Ethereum-compatible smart contracts and decentralized applications. Its Satoshi Plus consensus elects validators using delegated Bitcoin mining hash power, self-custodial Bitcoin staking, and delegated CORE staking. This connects Bitcoin participants to an EVM execution environment without modifying Bitcoin. Core is an independent Layer 1, not an Ethereum rollup or a Bitcoin Layer 2.
+
+## How it works
+1. Add Core Mainnet to an EVM wallet using chain ID 1116 and obtain CORE for gas.
+2. Connect the wallet to a Core dApp, inspect the requested transfer, approval, or contract call, then sign locally.
+3. The signed transaction is broadcast through an RPC endpoint; elected validators execute it in the EVM and produce blocks in round-robin order.
+4. Validator election weights delegated Bitcoin hash power, timelocked BTC, and delegated CORE.
+5. Verify the transaction on Core Scan; bridging and Bitcoin staking use separate protocols and confirmation flows.
+
+## Key facts
+- Network type: independent, EVM-compatible Layer-1 blockchain.
+- Mainnet chain ID: 1116 (`0x45c`).
+- Supported testnet: Core Testnet2, chain ID 1114 (`0x45a`).
+- Native asset: CORE, used for gas, staking, and governance.
+- Mainnet RPC: `https://rpc.coredao.org`.
+- Core supports Solidity contracts and Ethereum-style token standards such as ERC-20.
+- Satoshi Plus combines DPoW, DPoS, and Self-Custodial Bitcoin Staking.
+- Elected validators produce blocks in approximately three-second slots.
+- Official documentation describes average confirmation as 12 blocks.
+- Self-custodial BTC staking uses Bitcoin CLTV timelocks; the BTC remains on Bitcoin.
+
+## Common questions
+### Is Core DAO Chain safe?
+Core has public code and third-party audit reports, but audits cannot eliminate validator, bridge, smart-contract, token, or wallet risk. Verify contracts and permissions independently.
+
+### Who controls my funds?
+Your wallet controls its keys. The dashboard does not custody assets; a dApp can move approved assets only through transactions or allowances you sign.
+
+### What fees are charged?
+Core transaction gas is paid in CORE. Swaps, bridges, or other dApps may separately charge protocol fees and expose users to slippage.
+
+### How long does a transaction take?
+Blocks target roughly three-second slots, while the official confirmation reference is 12 blocks. Bridges also depend on source-chain finality and cross-chain messaging.
+
+### Which assets and chains are supported?
+Core supports native CORE and EVM tokens deployed or bridged to Core. Bridge networks and token lists can change, so verify current coverage in the official bridge.
+
+### How do I start, and what are the main risks?
+Add chain ID 1116, fund the wallet with CORE, and test with a small transaction. Main risks include phishing, malicious approvals, incorrect token addresses, bridge failures, contract bugs, and irreversible signatures.
+
+## App
+- Dashboard: https://core-dao-chain.github.io/
+- App: https://core-dao-chain.github.io/dashboard/
+
+## Official resources
+Official website: https://coredao.org/
+Documentation: https://docs.coredao.org/
+Network configuration: https://docs.coredao.org/docs/Dev-Guide/core-wallet-config
+RPC endpoints: https://docs.coredao.org/docs/Dev-Guide/rpc-list
+Core Scan: https://scan.coredao.org/
+Core Bridge: https://bridge.coredao.org/
+Staking portal: https://stake.coredao.org/
+Whitepaper: https://whitepaper.coredao.org/core-white-paper-v1.0.7/
+Source code: https://github.com/coredao-org/core-chain
+Audit reports: https://docs.coredao.org/docs/Learn/audit
+Official X: https://x.com/Coredao_Org
+
+## Data & references
+ChainList network record: https://chainlist.org/chain/1116
+CoinGecko CORE data: https://www.coingecko.com/en/coins/core
+CoinGecko Core ecosystem: https://www.coingecko.com/en/chains/core
+DeFiLlama Core data: https://defillama.com/chain/core
+EIP-155 chain identifiers: https://eips.ethereum.org/EIPS/eip-155
+ERC-20 standard: https://eips.ethereum.org/EIPS/eip-20

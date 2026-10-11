@@ -1,1410 +1,302 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Core DAO — Bitcoin-Aligned EVM Chain with Satoshi Plus</title>
-<meta name="description" content="Core DAO is an EVM-compatible chain secured by Satoshi Plus, combining delegated Bitcoin hash power with delegated proof-of-stake. See how non-custodial BTC staking, the CORE token and dual staking fit together.">
-<link rel="canonical" href="https://core-dao-chain.github.io/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Core DAO">
-<meta property="og:url" content="https://core-dao-chain.github.io/">
-<meta property="og:image" content="https://core-dao-chain.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Core DAO">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core DAO — Bitcoin-Aligned EVM Chain with Satoshi Plus</title>
+  <meta name="description" content="Core DAO is an EVM-compatible chain secured by Satoshi Plus, combining delegated Bitcoin hash power with delegated proof-of-stake. See how non-custodial BTC staking, the CORE token and dual staking fit together.">
+  <link rel="canonical" href="https://core-dao-chain.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Core DAO">
+  <meta property="og:description" content="Core DAO is an EVM-compatible chain secured by Satoshi Plus, combining delegated Bitcoin hash power with delegated proof-of-stake. See how non-custodial BTC staking, the CORE token and dual staking fit together.">
+  <meta property="og:url" content="https://core-dao-chain.github.io/">
+  <meta property="og:image" content="https://core-dao-chain.github.io/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Core DAO">
+  <meta name="twitter:description" content="Core DAO is an EVM-compatible chain secured by Satoshi Plus, combining delegated Bitcoin hash power with delegated proof-of-stake. See how non-custodial BTC staking, the CORE token and dual staking fit together.">
+  <meta name="twitter:image" content="https://core-dao-chain.github.io/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://core-dao-chain.github.io/#website", "url": "https://core-dao-chain.github.io/", "name": "Core DAO — Bitcoin-Aligned EVM Chain with Satoshi Plus"}, {"@type": "WebPage", "@id": "https://core-dao-chain.github.io/#webpage", "url": "https://core-dao-chain.github.io/", "name": "Core DAO — Bitcoin-Aligned EVM Chain with Satoshi Plus", "isPartOf": {"@id": "https://core-dao-chain.github.io/#website"}, "description": "Core DAO is an EVM-compatible chain secured by Satoshi Plus, combining delegated Bitcoin hash power with delegated proof-of-stake. See how non-custodial BTC staking, the CORE token and dual staking fit together.", "datePublished": "2026-10-11", "dateModified": "2026-10-11"}, {"@type": "SoftwareApplication", "name": "Core DAO", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://core-dao-chain.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Chains"}, {"@type": "ListItem", "position": 3, "name": "Core DAO"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Core DAO?", "acceptedAnswer": {"@type": "Answer", "text": "Core DAO is an EVM-compatible blockchain that secures itself through Satoshi Plus, a consensus combining delegated Bitcoin hash power with delegated proof-of-stake from CORE holders, while running standard Ethereum-style smart contracts."}}, {"@type": "Question", "name": "How does Satoshi Plus consensus work?", "acceptedAnswer": {"@type": "Answer", "text": "Bitcoin miners delegate a share of their existing hash power to a validator, and CORE holders delegate stake to the same validator. The two inputs are combined into a single ranking score, so neither miners nor stakers control block production alone."}}, {"@type": "Question", "name": "What does non-custodial Bitcoin staking mean here?", "acceptedAnswer": {"@type": "Answer", "text": "A holder locks native BTC with a timelock script on the Bitcoin chain itself and delegates the resulting stake to a validator, without ever handing the coin to a custodian or a bridge contract. The coin stays spendable on Bitcoin once the timelock expires."}}, {"@type": "Question", "name": "What is dual staking?", "acceptedAnswer": {"@type": "Answer", "text": "Dual staking combines staked CORE with delegated Bitcoin in one position and applies a reward multiplier when both are present, with the multiplier tier set by the ratio between the two assets rather than the size of either one alone."}}, {"@type": "Question", "name": "Is CORE the only token I need for gas?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. CORE is the native gas asset on Core DAO, and it also backs validator bonding and carries governance votes, separate from any BTC a holder has delegated for staking."}}, {"@type": "Question", "name": "How is Core DAO different from a Bitcoin bridge chain?", "acceptedAnswer": {"@type": "Answer", "text": "A bridge chain wraps BTC into a synthetic token that depends on the bridge's own solvency. This network's staking instead locks native BTC with a timelock on Bitcoin itself, so the coin never becomes a synthetic asset or leaves Bitcoin's own ledger."}}, {"@type": "Question", "name": "Is Core DAO safe to use?", "acceptedAnswer": {"@type": "Answer", "text": "The hash-power delegation, validator set and every transaction are public and verifiable, which removes the need to take any security claim on faith. Risk still varies by validator choice and by the specific contracts used once assets are on the chain, so each should be checked on its own."}}]}]}</script>
-<style>
-:root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1407;--muted:#6E6144;--accent:#E8820C;--accent-ink:#1A1200;--radius:18px;--display:"Outfit";--body:"Inter"}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 2rem;
-  background: var(--bg);
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-  min-width: 280px;
-  color: var(--text);
-  background: var(--bg);
-  font-family: var(--body);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-wrap: break-word;
-}
-::selection {
-  color: var(--accent-ink);
-  background: var(--accent);
-}
-a {
-  color: var(--accent);
-  text-decoration-thickness: .075em;
-  text-underline-offset: .2em;
-  transition: color .18s ease, background .18s ease, border-color .18s ease;
-}
-a:hover {
-  color: var(--text);
-}
-a:focus-visible,
-summary:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 5px;
-  border-radius: calc(var(--radius) * .35);
-}
-img,
-svg,
-video {
-  max-width: 100%;
-  vertical-align: middle;
-}
-img,
-video {
-  height: auto;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  color: var(--text);
-  font-family: var(--display);
-  font-weight: 650;
-  line-height: 1.2;
-  text-wrap: balance;
-}
-p,
-ul,
-ol,
-dl,
-figure,
-blockquote {
-  margin-top: 0;
-}
-[hidden] {
-  display: none !important;
-}
-.c9cf391 {
-  width: min(100% - 6rem, 1240px);
-  margin-inline: auto;
-}
-.c1a0987 {
-  position: absolute;
-  z-index: 20;
-  top: 1rem;
-  left: 1rem;
-  padding: .75rem 1.15rem;
-  transform: translateY(-180%);
-  border-radius: var(--radius);
-  color: var(--accent-ink);
-  background: var(--accent);
-  font-weight: 600;
-}
-.c1a0987:focus {
-  transform: translateY(0);
-}
-.c211f68 {
-  position: relative;
-  z-index: 1;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
-  background: var(--bg);
-}
-.c5d8410 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  min-height: 88px;
-  padding-block: 1rem;
-}
-.c17f965 {
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 650;
-  letter-spacing: -.04em;
-}
-.c15fa31 {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--surface));
-  border-radius: calc(var(--radius) * .55);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-}
-.c15fa31 svg {
-  width: 19px;
-  height: 19px;
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.cbabcc9 {
-  display: inline-flex;
-  align-items: center;
-  gap: .8rem;
-  padding: .5rem 0;
-  color: var(--text);
-  font-size: .9rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-.cbabcc9:hover {
-  color: var(--accent);
-}
-.c39fb59 {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, var(--bg));
-  background:
-    radial-gradient(ellipse at 95% 12%, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, var(--accent) 0%, transparent) 62%),
-    linear-gradient(130deg, var(--surface), color-mix(in srgb, var(--accent) 5%, var(--bg)) 70%, var(--bg));
-}
-.c39fb59::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 520px;
-  height: 520px;
-  right: -240px;
-  bottom: -310px;
-  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
-  border-radius: 50%;
-  box-shadow: 0 0 0 65px color-mix(in srgb, var(--accent) 3%, transparent), 0 0 0 130px color-mix(in srgb, var(--accent) 2%, transparent);
-  pointer-events: none;
-}
-.c6db2f1 {
-  padding-block: 1.2rem 3rem;
-}
-.caf9f8a {
-  margin-bottom: 1.6rem;
-  color: var(--muted);
-  font-size: .8rem;
-  line-height: 1.6;
-}
-.c7b8bf8 {
-  display: inline;
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: inherit;
-  text-decoration: none;
-}
-.c7b8bf8 a,
-a.c7b8bf8 {
-  color: var(--muted);
-  text-decoration: none;
-}
-.c7b8bf8 a:hover,
-a.c7b8bf8:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-.caf9f8a ol,
-.caf9f8a ul,
-ol.c7b8bf8,
-ul.c7b8bf8 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: .45rem .7rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.caf9f8a li {
-  display: inline;
-}
-.caf9f8a [aria-current="page"] {
-  color: var(--text);
-}
-.c5fc7d3 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: .8rem;
-  margin-bottom: 1.35rem;
-  color: var(--accent);
-  font-size: .875rem;
-  font-weight: 600;
-}
-.c47f72d {
-  padding-block: .3rem;
-}
-.c62755e {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  max-width: 180px;
-  padding: .4rem .65rem;
-  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
-  border-radius: calc(var(--radius) * .6);
-  background: var(--surface);
-  box-shadow: 0 3px 10px color-mix(in srgb, var(--text) 4%, transparent);
-  color: var(--text);
-  font-size: .8rem;
-  line-height: 1;
-}
-.c62755e:empty {
-  display: none;
-}
-.c62755e img,
-.c62755e svg {
-  display: block;
-  width: auto;
-  max-width: 148px;
-  height: 24px;
-  object-fit: contain;
-}
-.c39fb59 h1 {
-  max-width: 1050px;
-  margin: 0 0 1.5rem;
-  font-family: var(--display);
-  font-size: clamp(2.7rem, 5.7vw, 5.1rem);
-  font-weight: 600;
-  line-height: 1.06;
-  letter-spacing: -.055em;
-  overflow-wrap: anywhere;
-}
-.c39fb59 h1 em {
-  color: var(--accent);
-  font-style: normal;
-}
-.c39fb59 h1 a {
-  color: inherit;
-}
-.cf77766 {
-  max-width: 760px;
-  margin: 0 0 2.1rem;
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
-  line-height: 1.75;
-  text-wrap: pretty;
-}
-.cfb54d5 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.7rem;
-  min-height: 54px;
-  padding: .85rem 1.35rem;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
-  color: var(--accent-ink);
-  background: var(--accent);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 18%, transparent);
-  font-family: var(--body);
-  font-size: .95rem;
-  font-weight: 650;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
-}
-.cfb54d5:hover {
-  color: var(--accent-ink);
-  background: color-mix(in srgb, var(--accent) 92%, var(--text));
-  box-shadow: 0 9px 24px color-mix(in srgb, var(--accent) 24%, transparent);
-  transform: translateY(-2px);
-}
-.c445154 {
-  font-family: var(--body);
-  font-size: 1.25em;
-  line-height: 1;
-}
-.c5d9f27 {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.82fr);
-  gap: clamp(2rem, 4vw, 3.75rem);
-  align-items: start;
-}
-.c3cec1c {
-  min-width: 0;
-}
-.c3cec1c .cf77766 {
-  margin-bottom: 1.6rem;
-}
-.c70a19d {
-  position: relative;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(1.15rem, 2vw, 1.65rem);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--surface));
-  border-radius: calc(var(--radius) * 1.4);
-  background: linear-gradient(158deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--surface) 46%);
-  box-shadow: 0 22px 60px -26px color-mix(in srgb, var(--text) 24%, transparent), 0 3px 12px -6px color-mix(in srgb, var(--accent) 14%, transparent);
-}
-.c70a19d::before {
-  content: "";
-  position: absolute;
-  inset: -1px 14% auto;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 60%, transparent), transparent);
-}
-.ce94d48 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.6rem 1rem;
-  margin-bottom: 1rem;
-}
-.ce94d48 h2 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: 1.15rem;
-  font-weight: 650;
-  letter-spacing: -0.03em;
-}
-.cda7c13 {
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  padding: 0.28rem 0.62rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-.c759ab7 .ceb84d8 {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-.c759ab7 .ceb84d8 th,
-.c759ab7 .ceb84d8 td {
-  padding: 0.58rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  vertical-align: top;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-.c759ab7 .ceb84d8 tr:last-child th,
-.c759ab7 .ceb84d8 tr:last-child td {
-  border-bottom: 0;
-}
-.c759ab7 .ceb84d8 th {
-  width: 38%;
-  padding-right: 0.9rem;
-  color: var(--muted);
-  font-weight: 500;
-}
-.c759ab7 .ceb84d8 td {
-  color: var(--text);
-  font-weight: 550;
-}
-.c22b1a7 {
-  margin-top: 1.15rem;
-  width: 100%;
-}
-@media (max-width: 920px) {
-  .c5d9f27 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-  }
-  .c70a19d {
-    width: 100%;
-    max-width: 560px;
-  }
-}
-.summary-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-block: 1.5rem 4.5rem;
-}
-.summary-item {
-  min-width: 0;
-  padding: 1.2rem 1.35rem;
-  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 3px 12px color-mix(in srgb, var(--text) 3%, transparent);
-}
-.summary-item strong {
-  display: block;
-  margin-bottom: .2rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -.02em;
-}
-.summary-item span {
-  display: block;
-  color: var(--muted);
-  font-size: .8rem;
-  line-height: 1.5;
-}
-.c6d77e2 {
-  display: grid;
-  grid-template-columns: 235px minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  padding-bottom: 4.5rem;
-}
-.c02639b {
-  position: sticky;
-  top: 2rem;
-  min-width: 0;
-  max-height: calc(100dvh - 4rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--muted) 35%, var(--surface)) var(--surface);
-  padding: .3rem .75rem 1rem .25rem;
-}
-.c645c0a {
-  margin: 0 0 1.1rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: .95rem;
-  font-weight: 650;
-  letter-spacing: -.02em;
-}
-.c4d7869 {
-  display: grid;
-  gap: .3rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.c4d7869 li {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-}
-.c1f33a1 {
-  position: relative;
-  display: block;
-  padding: .7rem .9rem .7rem 1.1rem;
-  border-inline-start: 2px solid color-mix(in srgb, var(--muted) 18%, var(--bg));
-  border-radius: 0 calc(var(--radius) * .55) calc(var(--radius) * .55) 0;
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: .85rem;
-  font-weight: 450;
-  line-height: 1.5;
-  text-decoration: none;
-  overflow-wrap: anywhere;
-}
-.c1f33a1:hover {
-  border-inline-start-color: color-mix(in srgb, var(--accent) 45%, var(--bg));
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 5%, var(--bg));
-}
-.c1f33a1[aria-current="location"] {
-  border-inline-start-color: var(--accent);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 9%, var(--bg));
-  font-weight: 650;
-}
-.c4ec0eb {
-  margin: 1.65rem 0 0;
-  padding: 1.2rem 0 0;
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
-  color: var(--muted);
-  font-size: .78rem;
-  line-height: 1.65;
-}
-.cde1f8d {
-  min-width: 0;
-}
-.facts-panel {
-  padding: clamp(1.3rem, 3vw, 2.3rem);
-  margin-bottom: 3.75rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--surface));
-  border-top: 3px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 10px 35px color-mix(in srgb, var(--text) 5%, transparent);
-  scroll-margin-top: 2rem;
-}
-.panel-heading {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: .5rem 1.5rem;
-  justify-content: space-between;
-  margin-bottom: 1.4rem;
-}
-.panel-heading h2 {
-  margin: 0;
-  font-size: clamp(1.45rem, 2.3vw, 1.85rem);
-  letter-spacing: -.04em;
-}
-.panel-heading p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .8rem;
-}
-.facts-content {
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted) var(--surface);
-}
-.ceb84d8 {
-  width: 100%;
-  border-collapse: collapse;
-  color: var(--text);
-  font-family: var(--body);
-  font-size: .925rem;
-  line-height: 1.6;
-  text-align: left;
-}
-.ceb84d8 caption {
-  padding: 0 0 1rem;
-  color: var(--muted);
-  font-size: .85rem;
-  text-align: left;
-}
-.ceb84d8 th,
-.ceb84d8 td {
-  padding: 1.05rem .85rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
-  vertical-align: top;
-  overflow-wrap: anywhere;
-}
-.ceb84d8 th {
-  width: 37%;
-  color: var(--muted);
-  font-weight: 500;
-}
-.ceb84d8 thead th {
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
-  font-weight: 650;
-}
-.ceb84d8 td {
-  font-weight: 550;
-}
-.ceb84d8 tr > :first-child {
-  padding-left: 0;
-}
-.ceb84d8 tr > :last-child {
-  padding-right: 0;
-}
-.ceb84d8 tbody:last-child tr:last-child > *,
-.ceb84d8 > tr:last-child > * {
-  border-bottom: 0;
-}
-.ceb84d8 td p:last-child,
-.ceb84d8 th p:last-child {
-  margin-bottom: 0;
-}
-.c1a75ed {
-  min-width: 0;
-}
-.c214445 {
-  min-width: 0;
-  margin: 0 0 3.4rem;
-  scroll-margin-top: 2rem;
-}
-.c214445 + .c214445 {
-  padding-top: 2.8rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 11%, var(--bg));
-}
-.cb3dd90 {
-  margin: 0 0 1.25rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: clamp(1.65rem, 2.8vw, 2.35rem);
-  font-weight: 600;
-  line-height: 1.22;
-  letter-spacing: -.045em;
-}
-.caf1f63 {
-  color: var(--text);
-  font-family: var(--body);
-  font-size: 1rem;
-  line-height: 1.85;
-  overflow-wrap: anywhere;
-}
-.caf1f63 > :last-child {
-  margin-bottom: 0;
-}
-.caf1f63 p {
-  margin: 0 0 1.3rem;
-  text-wrap: pretty;
-}
-.caf1f63 h3 {
-  margin: 2rem 0 .9rem;
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -.025em;
-}
-.caf1f63 h4,
-.caf1f63 h5,
-.caf1f63 h6 {
-  margin: 1.6rem 0 .75rem;
-  font-size: 1.075rem;
-  line-height: 1.4;
-}
-.caf1f63 h3:first-child,
-.caf1f63 h4:first-child {
-  margin-top: 0;
-}
-.caf1f63 strong,
-.cc221ec strong {
-  color: var(--text);
-  font-weight: 650;
-}
-.caf1f63 ul,
-.caf1f63 ol,
-.cc221ec ul,
-.cc221ec ol {
-  margin: 1.2rem 0 1.6rem;
-  padding-left: 1.5rem;
-}
-.caf1f63 li,
-.cc221ec li {
-  padding-left: .4rem;
-  margin-block: .55rem;
-}
-.caf1f63 li::marker,
-.cc221ec li::marker {
-  color: var(--accent);
-  font-weight: 600;
-}
-.caf1f63 li > ul,
-.caf1f63 li > ol {
-  margin-block: .5rem;
-}
-.caf1f63 li p {
-  margin-bottom: .6rem;
-}
-.caf1f63 blockquote {
-  margin: 1.8rem 0;
-  padding: 1.3rem 1.5rem;
-  border-inline-start: 3px solid var(--accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-  color: var(--text);
-  font-size: 1.05rem;
-}
-.caf1f63 blockquote > :last-child {
-  margin-bottom: 0;
-}
-.caf1f63 blockquote cite {
-  display: block;
-  margin-top: .9rem;
-  color: var(--muted);
-  font-size: .85rem;
-  font-style: normal;
-}
-.caf1f63 table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin: 1.7rem 0;
-  overflow-x: auto;
-  border: 1px solid color-mix(in srgb, var(--text) 12%, var(--surface));
-  border-radius: var(--radius);
-  border-spacing: 0;
-  background: var(--surface);
-  font-family: var(--body);
-  font-size: .875rem;
-  line-height: 1.65;
-  text-align: left;
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted) var(--surface);
-}
-.caf1f63 table caption {
-  padding: .9rem 1rem;
-  color: var(--muted);
-  font-size: .82rem;
-  text-align: left;
-}
-.caf1f63 th,
-.caf1f63 td {
-  min-width: 125px;
-  padding: 1rem 1.15rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
-  vertical-align: top;
-}
-.caf1f63 th {
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
-  font-weight: 650;
-}
-.caf1f63 tbody tr:nth-child(even) {
-  background: color-mix(in srgb, var(--text) 2%, var(--surface));
-}
-.caf1f63 tbody:last-child tr:last-child > * {
-  border-bottom: 0;
-}
-.caf1f63 td > :last-child,
-.caf1f63 th > :last-child {
-  margin-bottom: 0;
-}
-.caf1f63 figure {
-  margin: 1.8rem 0;
-}
-.caf1f63 figure img {
-  display: block;
-  border-radius: var(--radius);
-}
-.caf1f63 figcaption {
-  margin-top: .7rem;
-  color: var(--muted);
-  font-size: .8rem;
-  line-height: 1.6;
-}
-.caf1f63 code,
-.cc221ec code {
-  padding: .1em .35em;
-  border-radius: calc(var(--radius) * .25);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
-  color: var(--text);
-  font-family: var(--body);
-  font-size: .9em;
-}
-.caf1f63 pre {
-  overflow-x: auto;
-  padding: 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--text) 10%, var(--surface));
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--text);
-  font-family: var(--body);
-  font-size: .875rem;
-  line-height: 1.7;
-}
-.caf1f63 pre code {
-  padding: 0;
-  background: var(--surface);
-}
-.caf1f63 hr {
-  margin: 2rem 0;
-  border: 0;
-  border-top: 1px solid color-mix(in srgb, var(--text) 12%, var(--bg));
-}
-.caf1f63 dt {
-  margin-top: 1.1rem;
-  color: var(--text);
-  font-weight: 650;
-}
-.caf1f63 dd {
-  margin: .4rem 0 1rem;
-  color: var(--muted);
-}
-.c8a5832 {
-  padding-top: 2.75rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 11%, var(--bg));
-  scroll-margin-top: 2rem;
-}
-.c8a5832 > .cb3dd90 {
-  margin-bottom: 1.65rem;
-}
-.c7097f4 {
-  margin: 0 0 .8rem;
-  border: 1px solid color-mix(in srgb, var(--text) 11%, var(--surface));
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 3px 12px color-mix(in srgb, var(--text) 3%, transparent);
-  overflow: clip;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-.c7097f4:hover {
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
-}
-.c7097f4[open] {
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--text) 4%, transparent);
-}
-.cefc4f3 {
-  position: relative;
-  display: block;
-  padding: 1.35rem 3.8rem 1.35rem 1.4rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1.025rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: -.015em;
-  list-style: none;
-  cursor: pointer;
-}
-.cefc4f3::-webkit-details-marker {
-  display: none;
-}
-.cefc4f3::after {
-  content: "+";
-  position: absolute;
-  top: 1.3rem;
-  right: 1.35rem;
-  display: grid;
-  place-items: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
-  color: var(--accent);
-  font-family: var(--body);
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1;
-}
-.c7097f4[open] > .cefc4f3::after {
-  content: "−";
-}
-.c7097f4 > .cefc4f3:focus-visible {
-  outline-offset: -5px;
-}
-.cc221ec {
-  padding: 0 1.4rem 1.45rem;
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: .95rem;
-  line-height: 1.8;
-}
-.cc221ec > :first-child {
-  margin-top: 0;
-}
-.cc221ec > :last-child {
-  margin-bottom: 0;
-}
-.cc221ec p {
-  margin-bottom: 1rem;
-}
-.c18a315 {
-  padding-block: 3rem 3.6rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-  scroll-margin-top: 2rem;
-}
-.c3e51a2 {
-  display: grid;
-  grid-template-columns: 235px minmax(0, 1fr);
-  gap: clamp(2.5rem, 5vw, 5rem);
-}
-.cc9c25a h2 {
-  margin-bottom: .7rem;
-  font-size: 1.4rem;
-  letter-spacing: -.035em;
-}
-.cc9c25a p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .85rem;
-  line-height: 1.7;
-}
-.cc1a821 {
-  min-width: 0;
-}
-.c3436d0 {
-  display: grid;
-  gap: .7rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-family: var(--body);
-}
-.caf1707 {
-  display: block;
-  min-width: 0;
-  padding: 1rem 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
-  border-radius: calc(var(--radius) * .75);
-  background: var(--surface);
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: .875rem;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-}
-.caf1707 a,
-a.caf1707 {
-  color: var(--text);
-  text-decoration-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
-  text-underline-offset: .25em;
-}
-.caf1707 a:hover,
-a.caf1707:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-.caf1707 p {
-  margin: .4rem 0 0;
-}
-.caf1707 small {
-  color: var(--muted);
-  font-size: .8rem;
-}
-.c95b157 {
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
-  background: var(--bg);
-}
-.c76152b {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  min-height: 100px;
-  padding-block: 1.5rem;
-}
-.cd90ee7 {
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -.025em;
-}
-.c8b1226 {
-  margin: 0;
-  color: var(--muted);
-  font-size: .8rem;
-}
-.c8b1226 span {
-  color: var(--text);
-}
-@media (min-width: 1500px) {
-  .c6db2f1 {
-    padding-bottom: 6rem;
-  }
-  .caf9f8a {
-    margin-bottom: 4.5rem;
-  }
-  .c6d77e2 {
-    gap: 5.5rem;
-  }
-  .c3e51a2 {
-    gap: 5.5rem;
-  }
-}
-@media (max-width: 1050px) {
-  .c9cf391 {
-    width: calc(100% - 3rem);
-  }
-  .c6d77e2,
-  .c3e51a2 {
-    grid-template-columns: 190px minmax(0, 1fr);
-    gap: 2.25rem;
-  }
-  .summary-strip {
-    gap: .75rem;
-  }
-  .summary-item {
-    padding: 1rem;
-  }
-  .c1f33a1 {
-    font-size: .8rem;
-  }
-}
-@media (max-width: 760px) {
-  html {
-    scroll-padding-top: 1rem;
-  }
-  .c5d8410 {
-    min-height: 72px;
-  }
-  .c6db2f1 {
-    padding-block: 1.25rem 3.25rem;
-  }
-  .caf9f8a {
-    margin-bottom: 2.6rem;
-  }
-  .c39fb59 h1 {
-    max-width: 100%;
-    font-size: clamp(2.45rem, 7.4vw, 3.6rem);
-    letter-spacing: -.045em;
-  }
-  .cf77766 {
-    font-size: 1.05rem;
-  }
-  .summary-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-block: 1.2rem 2.5rem;
-  }
-  .c6d77e2 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.3rem;
-    padding-bottom: 3rem;
-  }
-  .c02639b {
-    position: static;
-    max-height: none;
-    padding: 1.2rem;
-    border: 1px solid color-mix(in srgb, var(--text) 10%, var(--surface));
-    border-radius: var(--radius);
-    background: var(--surface);
-  }
-  .c645c0a {
-    margin-bottom: .8rem;
-  }
-  .c4d7869 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .4rem .8rem;
-  }
-  .c1f33a1 {
-    height: 100%;
-    padding-block: .7rem;
-    font-size: .825rem;
-  }
-  .c4ec0eb {
-    display: none;
-  }
-  .facts-panel {
-    margin-bottom: 2.5rem;
-  }
-  .c214445 {
-    margin-bottom: 2.6rem;
-  }
-  .c214445 + .c214445 {
-    padding-top: 2.2rem;
-  }
-  .c3e51a2 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-  .c18a315 {
-    padding-block: 2.5rem;
-  }
-  .c214445,
-  .facts-panel,
-  .c8a5832,
-  .c18a315 {
-    scroll-margin-top: 1rem;
-  }
-}
-@media (max-width: 440px) {
-  .c9cf391 {
-    width: calc(100% - 2rem);
-  }
-  .c5d8410 {
-    gap: 1rem;
-  }
-  .c17f965 {
-    gap: .5rem;
-    font-size: 1.05rem;
-  }
-  .cbabcc9 {
-    gap: .45rem;
-    font-size: .8rem;
-  }
-  .c5fc7d3 {
-    gap: .65rem;
-    margin-bottom: 1.1rem;
-  }
-  .c39fb59 h1 {
-    font-size: 2.5rem;
-  }
-  .cfb54d5 {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .summary-item {
-    padding: .9rem;
-  }
-  .summary-item strong {
-    font-size: .9rem;
-  }
-  .summary-item span {
-    font-size: .75rem;
-  }
-  .c4d7869 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .facts-panel {
-    padding: 1.15rem;
-  }
-  .ceb84d8 {
-    font-size: .85rem;
-  }
-  .ceb84d8 th,
-  .ceb84d8 td {
-    padding-block: .9rem;
-    padding-inline: .5rem;
-  }
-  .caf1f63 {
-    font-size: .95rem;
-    line-height: 1.8;
-  }
-  .caf1f63 blockquote {
-    padding: 1rem 1.1rem;
-  }
-  .cefc4f3 {
-    padding: 1.1rem 3rem 1.1rem 1.1rem;
-    font-size: .95rem;
-  }
-  .cefc4f3::after {
-    top: 1.1rem;
-    right: .9rem;
-  }
-  .cc221ec {
-    padding: 0 1.1rem 1.2rem;
-    font-size: .9rem;
-  }
-  .c76152b {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: .6rem;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-  }
-  .cfb54d5:hover {
-    transform: none;
-  }
-}
-@media print {
-  body {
-    background: var(--surface);
-    font-size: 10pt;
-  }
-  .c9cf391 {
-    width: 100%;
-  }
-  .c211f68,
-  .c1a0987,
-  .cfb54d5,
-  .c02639b,
-  .c39fb59::after {
-    display: none;
-  }
-  .c39fb59 {
-    background: var(--surface);
-  }
-  .c6db2f1 {
-    padding-block: 1rem 2rem;
-  }
-  .caf9f8a {
-    margin-bottom: 1.5rem;
-  }
-  .c39fb59 h1 {
-    font-size: 32pt;
-  }
-  .summary-strip {
-    margin-bottom: 2rem;
-  }
-  .c6d77e2,
-  .c3e51a2 {
-    display: block;
-  }
-  .facts-panel,
-  .summary-item,
-  .c7097f4 {
-    box-shadow: none;
-  }
-  .cb3dd90,
-  .caf1f63 h3 {
-    break-after: avoid;
-  }
-  .c7097f4,
-  .caf1707,
-  .caf1f63 tr {
-    break-inside: avoid;
-  }
-  .cc9c25a {
-    margin-bottom: 1rem;
-  }
-}
-</style>
+  <style>
+    :root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1407;--muted:#6E6144;--accent:#E8820C;--accent-ink:#1A1200;--radius:18px;--display:"Outfit";--body:"Inter"}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-underline-offset: .22em; }
+    a:hover { text-decoration-thickness: .12em; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--display); line-height: 1.15; text-wrap: balance; }
+    p, h1, h2, h3 { margin-top: 0; }
+    img, svg { max-width: 100%; vertical-align: middle; }
+    .c9cf391 { width: min(1180px, calc(100% - 3rem)); margin-inline: auto; }
+    .c1a0987 { position: absolute; z-index: 5; top: .5rem; left: 1rem; padding: .7rem 1rem; background: var(--surface); transform: translateY(-180%); border-radius: var(--radius); }
+    .c1a0987:focus { transform: translateY(0); }
+    .cc5bd78 { border-bottom: 1px solid color-mix(in srgb,var(--text) 10%,transparent); }
+    .cf8c534 { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .ce4f9a6 { display: inline-flex; align-items: center; gap: .7rem; color: var(--text); font: 650 1.12rem/1.2 var(--display); text-decoration: none; }
+    .cfcdfe6 { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: calc(var(--radius) * .6); background: var(--accent); color: var(--accent-ink); }
+    .c42aa4d { width: 1.2rem; height: 1.2rem; fill: none; stroke: var(--accent-ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .c6819d6 { display: flex; align-items: center; gap: 1.8rem; }
+    .c6819d6 > a { font-size: .88rem; font-weight: 600; text-decoration: none; }
+    .c6819d6 > a:not(.c4a42d8) { color: var(--muted); }
+    .c4a42d8 { display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 52px; padding: .85rem 1.4rem; border: 1px solid color-mix(in srgb,var(--accent-ink) 12%,transparent); border-radius: var(--radius); background: linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 88%,var(--text))); color: var(--accent-ink); font: 650 .95rem/1.3 var(--body); text-decoration: none; box-shadow: 0 6px 18px color-mix(in srgb,var(--accent) 17%,transparent); transition: transform .18s ease, box-shadow .18s ease; }
+    .c4a42d8:hover { transform: translateY(-2px); box-shadow: 0 9px 24px color-mix(in srgb,var(--accent) 25%,transparent); }
+    .cf8c534 .c4a42d8 { min-height: 42px; padding: .65rem 1rem; }
+    .caf9f8a { padding-block: 1rem 0; color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
+    .c7b8bf8 { color: var(--muted); }
+    .c7b8bf8 a, a.c7b8bf8 { color: var(--muted); text-decoration: none; }
+    .c7b8bf8 a:hover, a.c7b8bf8:hover { color: var(--accent); text-decoration: underline; }
+    .c7b8bf8 ol, .c7b8bf8 ul { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 0; margin: 0; list-style: none; }
+    .c39fb59 { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: clamp(2rem,5vw,4.5rem); align-items: start; padding-block: 1.5rem 3rem; }
+    .cb78452 { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.3rem; color: var(--accent); font-size: .86rem; font-weight: 600; }
+    .cb78452::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb,var(--accent) 9%,transparent); }
+    h1 { margin-bottom: 1.4rem; font-size: clamp(2.5rem,4.7vw,4.35rem); font-weight: 600; letter-spacing: -.055em; overflow-wrap: anywhere; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .c823a33 { max-width: 48ch; margin-bottom: 2rem; color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
+    .c6db2cf { position: relative; min-width: 0; padding: clamp(1.1rem,2.4vw,1.5rem); border: 1px solid color-mix(in srgb,var(--accent) 20%,var(--surface)); border-radius: calc(var(--radius) * 1.6); background: linear-gradient(155deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),var(--surface) 40%); box-shadow: 0 24px 64px color-mix(in srgb,var(--text) 9%,transparent),0 4px 12px color-mix(in srgb,var(--accent) 6%,transparent); }
+    .ca51737 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .7rem; margin-bottom: 1rem; }
+    .ca51737 h2 { margin: 0; font-size: 1.35rem; letter-spacing: -.035em; }
+    .c062343 { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .65rem; border: 1px solid color-mix(in srgb,var(--accent) 16%,transparent); border-radius: 999px; background: color-mix(in srgb,var(--accent) 8%,var(--surface)); color: var(--accent); font-size: .72rem; font-weight: 600; }
+    .c062343::before { content: ""; width: .35rem; height: .35rem; border-radius: 50%; background: var(--accent); }
+    .route { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: .8rem; padding: .8rem; margin-bottom: 1rem; border: 1px solid color-mix(in srgb,var(--text) 9%,transparent); border-radius: var(--radius); background: var(--surface); }
+    .endpoint { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; }
+    .endpoint:last-child { align-items: flex-end; }
+    .endpoint-label, .cbd6ea4 { color: var(--muted); font-size: .78rem; font-weight: 500; }
+    .logo { display: flex; align-items: center; min-height: 36px; max-width: 100%; overflow-wrap: anywhere; font: 600 1rem/1.3 var(--display); }
+    .logo img, .logo svg { max-height: 36px; width: auto; max-width: 100%; object-fit: contain; }
+    .route-arrow { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: color-mix(in srgb,var(--accent) 9%,var(--surface)); }
+    .route-arrow .c42aa4d { stroke: var(--accent); }
+    .cbd6ea4 { display: block; margin-bottom: .5rem; color: var(--text); }
+    .amount-field { display: flex; align-items: center; gap: .75rem; padding: .8rem 1rem; border: 1px solid color-mix(in srgb,var(--text) 18%,transparent); border-radius: var(--radius); background: var(--bg); transition: border-color .18s ease; }
+    .amount-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent); }
+    .amount-field input { width: 100%; min-width: 0; padding: .2rem 0; border: 0; background: var(--bg); color: var(--text); font: 550 1.6rem/1.2 var(--display); font-variant-numeric: tabular-nums; }
+    .amount-field input:focus { outline: 0; }
+    .unit { color: var(--muted); font-size: .8rem; }
+    .cf17ec0 { margin: .45rem 0 .85rem; color: var(--muted); font-size: .74rem; }
+    .field-error { margin: .5rem 0; color: var(--text); font-size: .8rem; font-weight: 600; }
+    [hidden] { display: none !important; }
+    .estimate { padding: 1rem; border-radius: var(--radius); background: linear-gradient(120deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),color-mix(in srgb,var(--accent) 4%,var(--surface))); }
+    .estimate-label { margin-bottom: .25rem; color: var(--muted); font-size: .8rem; }
+    .estimate-value { display: block; color: var(--text); font: 600 clamp(1.7rem,3vw,2.5rem)/1.3 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .estimate-value small { color: var(--muted); font: 400 .8rem/1.4 var(--body); letter-spacing: 0; }
+    .estimate dl { display: grid; gap: .5rem; margin: .8rem 0 0; padding-top: .8rem; border-top: 1px solid color-mix(in srgb,var(--accent) 15%,transparent); font-size: .8rem; }
+    .estimate dl div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; }
+    .estimate dt { color: var(--muted); }
+    .estimate dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .method { margin-block: .7rem; color: var(--muted); font-size: .75rem; }
+    .method summary { width: fit-content; color: var(--text); cursor: pointer; }
+    .method p { margin: .65rem 0 0; }
+    .c6db2cf > .c4a42d8 { width: 100%; }
+    .cff8df6 { padding: .8rem 1rem; border: 1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius: var(--radius); background: var(--surface); }
+    .ca22840 { margin-bottom: .45rem; }
+    .ca54920 { display: flex; align-items: center; gap: .75rem; }
+    .ce39c5c { flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; color: var(--text); font: 550 1.55rem/1.2 var(--display); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .ce39c5c:focus { outline: 0; }
+    .cf2848b { position: relative; display: inline-flex; align-items: center; gap: .5rem; flex: none; padding: .4rem 1.5rem .4rem .5rem; border: 1px solid color-mix(in srgb,var(--text) 13%,transparent); border-radius: 999px; background: var(--bg); }
+    .cd9a122 { width: 22px; height: 22px; border-radius: 50%; object-fit: contain; flex: none; }
+    .c8aad3d { border: 0; background: transparent; color: var(--text); font: 600 .95rem/1 var(--body); cursor: pointer; appearance: none; -webkit-appearance: none; }
+    .c8aad3d:focus { outline: 0; }
+    .cf2848b::after { content: ""; position: absolute; right: .7rem; width: .42rem; height: .42rem; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-2px) rotate(45deg); pointer-events: none; }
+    .c61b3c5 { margin-top: .4rem; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
+    .cbb539b { position: relative; z-index: 1; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; margin: -.55rem auto; padding: 0; border: 3px solid var(--surface); border-radius: 50%; background: color-mix(in srgb,var(--accent) 13%,var(--surface)); color: var(--accent); cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .cbb539b svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .cbb539b:hover { transform: rotate(180deg); background: color-mix(in srgb,var(--accent) 20%,var(--surface)); }
+    .cb91a2c { display: grid; gap: .5rem; margin: 1rem 0 0; padding-top: .9rem; border-top: 1px solid color-mix(in srgb,var(--accent) 15%,transparent); font-size: .82rem; }
+    .cb91a2c div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem 1rem; }
+    .cb91a2c dt { color: var(--muted); }
+    .cb91a2c dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .c64641c > .c4a42d8 { width: 100%; margin-top: 1.05rem; }
+    .c462db1 { padding: 2rem; border: 1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius: calc(var(--radius) * 1.3); background: var(--surface); }
+    .c2c371b { margin-bottom: 1.3rem; font-size: 1.65rem; font-weight: 550; letter-spacing: -.035em; }
+    .c4571a4 { max-width: 100%; overflow-x: auto; }
+    .ceb84d8 { width: 100%; border-collapse: collapse; text-align: left; font-size: .92rem; }
+    .ceb84d8 caption { padding-bottom: 1rem; text-align: left; color: var(--muted); }
+    .ceb84d8 th, .ceb84d8 td { padding: 1rem 1.1rem; border-bottom: 1px solid color-mix(in srgb,var(--text) 9%,transparent); vertical-align: top; overflow-wrap: anywhere; }
+    .ceb84d8 th { color: var(--muted); font-weight: 500; }
+    .ceb84d8 thead { background: color-mix(in srgb,var(--accent) 5%,var(--surface)); }
+    .ceb84d8 tbody tr:last-child > * { border-bottom: 0; }
+    .c35d988 { max-width: 820px; padding-block: 4rem 2rem; }
+    .c214445 { margin-bottom: 3.3rem; }
+    .cb3dd90 { margin: 0 0 1.1rem; font: 550 clamp(1.6rem,3vw,2.2rem)/1.2 var(--display); letter-spacing: -.035em; }
+    .caf1f63 { color: var(--muted); line-height: 1.85; overflow-wrap: anywhere; }
+    .caf1f63 p { margin-bottom: 1.2rem; }
+    .caf1f63 strong, .caf1f63 h3, .caf1f63 h4 { color: var(--text); }
+    .caf1f63 ul, .caf1f63 ol { padding-left: 1.3rem; }
+    .caf1f63 li { padding-left: .3rem; margin-block: .55rem; }
+    .caf1f63 li::marker { color: var(--accent); }
+    .caf1f63 blockquote { margin: 1.5rem 0; padding: 1rem 1.4rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; background: var(--surface); color: var(--text); }
+    .caf1f63 img { height: auto; border-radius: var(--radius); }
+    .caf1f63 pre { overflow-x: auto; padding: 1rem; border-radius: var(--radius); background: var(--surface); }
+    .caf1f63 code, .caf1f63 pre { font-family: var(--body); }
+    .c7097f4 { margin-block: .8rem; border: 1px solid color-mix(in srgb,var(--text) 11%,transparent); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+    .cefc4f3 { position: relative; padding: 1.3rem 3.5rem 1.3rem 1.4rem; list-style: none; cursor: pointer; color: var(--text); font: 550 1.04rem/1.5 var(--display); }
+    .cefc4f3::-webkit-details-marker { display: none; }
+    .cefc4f3::after { content: "+"; position: absolute; right: 1.4rem; top: 1.2rem; color: var(--accent); font-size: 1.3rem; }
+    details[open] > .cefc4f3::after { content: "−"; }
+    .c7097f4[open] { border-color: color-mix(in srgb,var(--accent) 35%,var(--surface)); }
+    .cefc4f3:focus-visible { outline-offset: -5px; }
+    .cc221ec { padding: 0 1.4rem 1.4rem; color: var(--muted); overflow-wrap: anywhere; }
+    .cc221ec > :last-child { margin-bottom: 0; }
+    .c1bb761 { max-width: 820px; padding-block: 1.5rem 3.5rem; border-top: 1px solid color-mix(in srgb,var(--text) 12%,transparent); }
+    .c1bb761 .c2c371b { font-size: 1.25rem; }
+    .c3436d0 { margin: 0; padding-left: 1.25rem; color: var(--muted); font-size: .88rem; }
+    .caf1707 { padding-block: .4rem; padding-left: .25rem; overflow-wrap: anywhere; }
+    .caf1707 a, a.caf1707 { color: var(--text); text-decoration-color: color-mix(in srgb,var(--accent) 45%,transparent); }
+    .caf1707 a:hover, a.caf1707:hover { color: var(--accent); }
+    .c95b157 { border-top: 1px solid color-mix(in srgb,var(--text) 10%,transparent); }
+    .c76152b { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; min-height: 96px; padding-block: 1.5rem; color: var(--muted); font-size: .8rem; }
+    .c76152b p { margin: 0; }
+    .c76152b a { color: var(--muted); }
+    @media (max-width: 850px) { .c39fb59 { grid-template-columns: minmax(0,1fr); gap: 2.5rem; padding-block: 2.5rem 3.5rem; } .c3cec1c { max-width: 650px; } .c6db2cf { width: 100%; max-width: 600px; justify-self: center; } h1 { font-size: clamp(2.5rem,7vw,4rem); } .c823a33 { max-width: 60ch; } }
+    @media (max-width: 540px) { .c9cf391 { width: calc(100% - 2rem); } .cf8c534 { min-height: 76px; gap: .7rem; } .ce4f9a6 { font-size: .95rem; gap: .45rem; } .cfcdfe6 { width: 2rem; height: 2rem; } .c6819d6 { gap: .6rem; } .c6819d6 > a:not(.c4a42d8) { display: none; } .cf8c534 .c4a42d8 { padding-inline: .85rem; font-size: .8rem; } .c462db1 { padding: 1.25rem; } .ceb84d8 th, .ceb84d8 td { padding: .8rem .55rem; } .c3cec1c > .c4a42d8 { width: 100%; } .c35d988 { padding-top: 2.8rem; } .c76152b { align-items: flex-start; flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .c4a42d8, .amount-field { transition: none; } .c4a42d8:hover { transform: none; } }
+  </style>
 </head>
 <body>
-<a class="c1a0987" href="#guide-main">Skip to guide</a>
-<header class="c211f68">
-  <div class="c9cf391 c5d8410">
-    <div class="c17f965">
-      <span class="c15fa31" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v14h-6a3 3 0 0 0-2 1 3 3 0 0 0-2-1H4zM12 6.5v14M7 9h2M15 9h2M7 12h2M15 12h2"/></svg></span>
-      <span>The guide</span>
-    </div>
-    <a class="cbabcc9" href="dashboard/">Open app <span class="c445154" aria-hidden="true">↗</span></a>
-  </div>
-</header>
-<section class="c39fb59" aria-labelledby="guide-title">
-  <div class="c9cf391 c6db2f1">
-    <nav class="caf9f8a" aria-label="Breadcrumb"><nav class="c7b8bf8" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Chains</span> <span>/</span> <span>Core DAO</span></nav></nav>
-    <div class="c5d9f27">
-      <div class="c3cec1c">
-        <div class="c5fc7d3"><span class="c47f72d">A closer look</span><span class="c62755e"><img src="assets/tokens/btc.svg" alt="Bitcoin" width="28" height="28"></span></div>
-        <h1 id="guide-title">Core <em>DAO</em>.</h1>
-        <p class="cf77766">Core DAO is an EVM-compatible blockchain that secures itself through Satoshi Plus, a consensus model that combines delegated Bitcoin hash power with delegated proof-of-stake voting from CORE token holders. Bitcoin holders can delegate native BTC to a validator through a timelock on Bitcoin itself, without handing custody to any bridge or exchange, while developers deploy ordinary Solidity contracts the same way they would on Ethereum. The CORE token pays gas, backs validator bonding and carries governance votes, and a dual-staking mechanism rewards holders who combine staked CORE with delegated Bitcoin rather than holding either one alone.</p>
-        <a class="cfb54d5" href="dashboard/">Open app <span class="c445154" aria-hidden="true">↗</span></a>
+  <a class="c1a0987" href="#content">Skip to content</a>
+  <header class="cc5bd78">
+    <nav class="cf8c534 c9cf391" aria-label="Primary navigation">
+      <a class="ce4f9a6" href="#top" aria-label="Swap station, top of page">
+        <span class="cfcdfe6" aria-hidden="true"><svg class="c42aa4d" viewBox="0 0 24 24"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>
+        Swap station
+      </a>
+      <div class="c6819d6">
+        <a href="#facts">Key facts</a>
+        <a href="#sources">Sources</a>
+        <a class="c4a42d8" href="dashboard/">Open app</a>
       </div>
-      <aside class="c70a19d" id="key-facts" aria-labelledby="aside-title">
-        <div class="ce94d48">
-          <h2 id="aside-title">At a glance</h2>
-          <span class="cda7c13">Chains</span>
+    </nav>
+  </header>
+  <div class="c9cf391" id="top">
+    <div class="caf9f8a"><nav class="c7b8bf8" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Chains</span> <span>/</span> <span>Core DAO</span></nav></div>
+    <section class="c39fb59" aria-labelledby="hero-title">
+      <div class="c3cec1c">
+        <p class="cb78452">All swap routes</p>
+        <h1 id="hero-title">Core <em>DAO</em>.</h1>
+        <p class="c823a33">Core DAO is an EVM-compatible blockchain that secures itself through Satoshi Plus, a consensus model that combines delegated Bitcoin hash power with delegated proof-of-stake voting from CORE token holders.</p>
+        <a class="c4a42d8" href="dashboard/">Open app <svg class="c42aa4d" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <aside class="c6db2cf c64641c" aria-labelledby="widget-title">
+        <div class="ca51737">
+          <h2 id="widget-title">Swap</h2>
+          <span class="c062343">Best route</span>
         </div>
-        <div class="c759ab7"><table class="ceb84d8"><tbody><tr><th scope="row">Chain type</th><td>EVM-compatible layer-1, Bitcoin-aligned</td></tr>
+        <div class="cff8df6">
+          <div class="ca22840"><span class="cbd6ea4">You pay</span></div>
+          <div class="ca54920">
+            <input id="pay-amount" class="ce39c5c" type="number" inputmode="decimal" min="0" max="1000000000" step="any" value="1" aria-label="Amount you pay">
+            <span class="cf2848b">
+              <img class="cd9a122" id="pay-ico" width="22" height="22" alt="" src="assets/tokens/eth.svg">
+              <select id="pay-token" class="c8aad3d" aria-label="Token you pay"></select>
+            </span>
+          </div>
+          <div class="c61b3c5" id="pay-usd">—</div>
+        </div>
+        <button type="button" class="cbb539b" id="swap-switch" aria-label="Switch the two tokens">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v13m0 0-3-3m3 3 3-3M17 20V7m0 0-3 3m3-3 3 3"/></svg>
+        </button>
+        <div class="cff8df6">
+          <div class="ca22840"><span class="cbd6ea4">You receive</span></div>
+          <div class="ca54920">
+            <output id="get-amount" class="ce39c5c" for="pay-amount">—</output>
+            <span class="cf2848b">
+              <img class="cd9a122" id="get-ico" width="22" height="22" alt="" src="assets/tokens/usdt.svg">
+              <select id="get-token" class="c8aad3d" aria-label="Token you receive"></select>
+            </span>
+          </div>
+          <div class="c61b3c5" id="get-usd">—</div>
+        </div>
+        <dl class="cb91a2c">
+          <div><dt>Rate</dt><dd id="swap-rate">—</dd></div>
+          <div><dt>Network fee</dt><dd id="swap-fee">0.3%</dd></div>
+        </dl>
+        <noscript><p class="cf17ec0">Enable JavaScript to estimate the swap.</p></noscript>
+        <a class="c4a42d8" href="dashboard/">Swap <svg class="c42aa4d" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </aside>
+    </section>
+    <section class="c462db1" id="facts" aria-labelledby="facts-title">
+      <h2 class="c2c371b" id="facts-title">Key facts</h2>
+      <div class="c4571a4"><table class="ceb84d8"><tbody><tr><th scope="row">Chain type</th><td>EVM-compatible layer-1, Bitcoin-aligned</td></tr>
 <tr><th scope="row">Consensus</th><td>Satoshi Plus — Bitcoin hash power + delegated PoS</td></tr>
 <tr><th scope="row">Native token</th><td>CORE — gas, staking, governance</td></tr>
 <tr><th scope="row">BTC staking</th><td>Non-custodial, timelocked on Bitcoin</td></tr>
 <tr><th scope="row">Dual staking</th><td>CORE + BTC combined for a reward multiplier</td></tr>
 <tr><th scope="row">Smart contracts</th><td>Standard Solidity / EVM tooling</td></tr></tbody></table></div>
-        <a class="cfb54d5 c22b1a7" href="dashboard/">Open app <span class="c445154" aria-hidden="true">↗</span></a>
-      </aside>
-    </div>
+    </section>
   </div>
-</section>
-<div class="c9cf391">
-  <div class="c6d77e2">
-    <nav class="c02639b" aria-labelledby="toc-title">
-      <h2 class="c645c0a" id="toc-title">On this page</h2>
-      <ul class="c4d7869" id="toc-list">
-        <li><a class="c1f33a1" href="#guide-sections" data-sections-link>In depth</a></li>
-        <li><a class="c1f33a1" href="#questions">Questions &amp; answers</a></li>
-        <li><a class="c1f33a1" href="#sources">Sources</a></li>
-      </ul>
-      <p class="c4ec0eb">Read from the beginning, or jump to the details you need.</p>
-    </nav>
-    <main class="cde1f8d" id="guide-main" tabindex="-1">
-      <div class="c1a75ed" id="guide-sections"><section class="c214445"><h2 class="cb3dd90">What Is Core DAO?</h2><div class="caf1f63"><strong>Core DAO is an EVM-compatible layer-1 blockchain that ties a share of its security to Bitcoin's hash power instead of relying on an isolated validator set alone.</strong> The network is Bitcoin-aligned by design: it borrows Bitcoin's existing mining infrastructure for part of its security budget while running a familiar Ethereum Virtual Machine environment on top, so existing Solidity contracts, wallets and developer tooling work with little to no change. That combination is documented in the <a href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a>, and the underlying proof-of-work network it draws security from is the same one described on <a href="https://en.wikipedia.org/wiki/Bitcoin" rel="nofollow noopener" target="_blank">Wikipedia's Bitcoin entry</a>. Core DAO's native asset, CORE, pays gas, secures the delegated proof-of-stake side of consensus, and is used across governance votes that steer protocol parameters such as reward splits and validator set size.</div></section>
+  <main class="c35d988 c9cf391" id="content">
+    <section class="c214445"><h2 class="cb3dd90">What Is Core DAO?</h2><div class="caf1f63"><strong>Core DAO is an EVM-compatible layer-1 blockchain that ties a share of its security to Bitcoin's hash power instead of relying on an isolated validator set alone.</strong> The network is Bitcoin-aligned by design: it borrows Bitcoin's existing mining infrastructure for part of its security budget while running a familiar Ethereum Virtual Machine environment on top, so existing Solidity contracts, wallets and developer tooling work with little to no change. That combination is documented in the <a href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a>, and the underlying proof-of-work network it draws security from is the same one described on <a href="https://en.wikipedia.org/wiki/Bitcoin" rel="nofollow noopener" target="_blank">Wikipedia's Bitcoin entry</a>. Core DAO's native asset, CORE, pays gas, secures the delegated proof-of-stake side of consensus, and is used across governance votes that steer protocol parameters such as reward splits and validator set size.</div></section>
 <section class="c214445"><h2 class="cb3dd90">Satoshi Plus: The Consensus Behind Core DAO</h2><div class="caf1f63">Core DAO's consensus mechanism, called Satoshi Plus, blends two inputs that are normally kept separate on other chains: Bitcoin miners delegate a declared share of their existing hash power to a Core validator instead of mining a second chain, and CORE holders delegate stake the way they would on any delegated proof-of-stake network. Validators are ranked by a hybrid score built from both inputs together, so no single group — miners or stakers alone — controls block production on its own.<h3>Bitcoin Hash Power Delegation</h3>Miners who already point hardware at Bitcoin can redirect a declared share of that hash power toward a Core validator without changing anything they send to Bitcoin itself. The delegation is recorded on Bitcoin through a small, auditable transaction pattern, and the resulting hash-power ranking can be checked against the raw chain data on a public <a href="https://mempool.space/" rel="nofollow noopener" target="_blank">Bitcoin block explorer</a>.<h3>Delegated Proof-of-Stake Voting</h3>Alongside hash power, CORE token holders delegate their stake to the validators they trust, and that delegated stake forms the second half of the ranking score. Because the two inputs are weighted together, a validator needs support from both constituencies to stay competitive, which spreads influence across more participants than a single-mechanism chain typically allows.</div></section>
 <section class="c214445"><h2 class="cb3dd90">CORE Token and Dual Staking</h2><div class="caf1f63">CORE is the network's native asset: it pays transaction fees, backs validator bonding, and carries on-chain governance votes over parameters such as reward splits and the size of the validator set. Dual staking lets a holder combine staked CORE with delegated Bitcoin inside a single position, and the protocol applies a reward multiplier when both are present rather than treating them as two unrelated pools. The ratio between the two assets determines the multiplier tier, so reaching the top rate takes a proportionate amount of each rather than an unlimited amount of just one. This design is meant to give both constituencies — Bitcoin holders and CORE holders — a direct reason to participate in the same security budget instead of competing for it.</div></section>
 <section class="c214445"><h2 class="cb3dd90">Non-Custodial Bitcoin Staking on Core DAO</h2><div class="caf1f63">Non-custodial Bitcoin staking is the feature that most clearly separates this network from chains that only wrap or bridge Bitcoin to get exposure to it. A holder locks native BTC through a timelock script on the Bitcoin chain itself, delegates the resulting stake to a Core validator, and keeps the ability to reclaim the coin once the lock expires, with no custodian ever holding the keys in between.<h3>Timelocked BTC, Not Wrapped BTC</h3>Because the lock lives on Bitcoin rather than inside a bridge contract, the staked coin never turns into a synthetic token that depends on a third party's solvency. Any staking transaction can be confirmed directly against Bitcoin's own ledger on the <a href="https://scan.coredao.org/" rel="nofollow noopener" target="_blank">Core explorer</a> alongside the delegation record it points back to.<h3>Rewards Without Giving Up the Coin</h3>The staked BTC earns CORE rewards for the delegation while remaining, at the protocol level, the holder's own coin under a timelock they control. When the term ends, the lock releases and the BTC is spendable on Bitcoin exactly as before, with no unwrap step and no dependency on the chain's own uptime to recover it.</div></section>
 <section class="c214445"><h2 class="cb3dd90">Core DAO vs Other EVM-Compatible Chains</h2><div class="caf1f63">Plenty of EVM-compatible chains compete for the same developers and the same liquidity. What separates Core DAO is the source of its security budget and its native tie to Bitcoin rather than to a validator token alone. The table below lines up the basics against two common reference points.<table><thead><tr><th>Chain</th><th>Security model</th><th>Native gas asset</th></tr></thead><tbody><tr><td>Core DAO</td><td>Satoshi Plus: Bitcoin hash power + delegated PoS</td><td>CORE</td></tr><tr><td>Ethereum</td><td>Proof-of-stake validators</td><td>ETH</td></tr><tr><td>Typical PoS layer-1</td><td>Delegated proof-of-stake only</td><td>Native token</td></tr></tbody></table></div></section>
 <section class="c214445"><h2 class="cb3dd90">Building in the Core Ecosystem</h2><div class="caf1f63">Because Core DAO runs standard EVM bytecode, the tooling an Ethereum developer already knows carries over directly, and the applications that have launched on the network cover the usual categories plus a few that lean specifically on native Bitcoin staking. Total value locked across these applications is tracked independently on <a href="https://defillama.com/chain/CORE" rel="nofollow noopener" target="_blank">DefiLlama</a>, which is a useful outside check before trusting any single project's own numbers.<ul><li>Lending and borrowing markets that accept staked CORE and BTC-backed positions as collateral</li><li>Decentralized exchanges for swapping CORE, bridged assets and stablecoins</li><li>Liquid staking tokens that represent a delegated BTC or CORE position so it can be reused elsewhere</li><li>Standard Solidity deployment through the same wallets, IDEs and RPC tooling used on Ethereum</li><li>Governance tooling for CORE holders to vote on validator and reward parameters</li></ul></div></section>
-<section class="c214445"><h2 class="cb3dd90">Is Core DAO Safe to Use?</h2><div class="caf1f63">This chain's central security claim — a link to Bitcoin's hash power — is also the detail most worth checking yourself rather than taking on faith. The hash-power delegation, the validator set and every transaction are public, so the claims above are verifiable rather than promotional.<h3>Verify Validators Yourself</h3>Before delegating stake or BTC, look up a validator's current hash-power ranking and uptime rather than relying on a third-party ranking site, and review the validator documentation at <a href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a> first. A validator with a short track record or a sudden jump in delegated hash power deserves closer attention before you commit funds to it.<h3>Smart Contract and Bridge Risk Stay Separate</h3>Native BTC staking carries Bitcoin-timelock risk rather than bridge risk, but any bridged asset brought onto the chain to use in DeFi still carries that bridge's own risk profile. Treat each contract you interact with — lending markets, decentralized exchanges, liquid staking wrappers — as its own risk surface rather than assuming the chain's Bitcoin-linked security extends to every application built on top of it.</div></section></div>
-      <section class="c8a5832" id="questions" aria-labelledby="questions-title">
-        <h2 class="cb3dd90" id="questions-title">Questions &amp; answers</h2>
-        <details class="c7097f4"><summary class="cefc4f3">What is Core DAO?</summary><div class="cc221ec"><strong>Core DAO is an EVM-compatible blockchain</strong> that secures itself through Satoshi Plus, a consensus combining delegated Bitcoin hash power with delegated proof-of-stake from CORE holders, while running standard Ethereum-style smart contracts.</div></details>
+<section class="c214445"><h2 class="cb3dd90">Is Core DAO Safe to Use?</h2><div class="caf1f63">This chain's central security claim — a link to Bitcoin's hash power — is also the detail most worth checking yourself rather than taking on faith. The hash-power delegation, the validator set and every transaction are public, so the claims above are verifiable rather than promotional.<h3>Verify Validators Yourself</h3>Before delegating stake or BTC, look up a validator's current hash-power ranking and uptime rather than relying on a third-party ranking site, and review the validator documentation at <a href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a> first. A validator with a short track record or a sudden jump in delegated hash power deserves closer attention before you commit funds to it.<h3>Smart Contract and Bridge Risk Stay Separate</h3>Native BTC staking carries Bitcoin-timelock risk rather than bridge risk, but any bridged asset brought onto the chain to use in DeFi still carries that bridge's own risk profile. Treat each contract you interact with — lending markets, decentralized exchanges, liquid staking wrappers — as its own risk surface rather than assuming the chain's Bitcoin-linked security extends to every application built on top of it.</div></section>
+    <details class="c7097f4"><summary class="cefc4f3">What is Core DAO?</summary><div class="cc221ec"><strong>Core DAO is an EVM-compatible blockchain</strong> that secures itself through Satoshi Plus, a consensus combining delegated Bitcoin hash power with delegated proof-of-stake from CORE holders, while running standard Ethereum-style smart contracts.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">How does Satoshi Plus consensus work?</summary><div class="cc221ec">Bitcoin miners delegate a share of their existing hash power to a validator, and CORE holders delegate stake to the same validator. The two inputs are combined into a single ranking score, so neither miners nor stakers control block production alone.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">What does non-custodial Bitcoin staking mean here?</summary><div class="cc221ec">A holder locks native BTC with a timelock script on the Bitcoin chain itself and delegates the resulting stake to a validator, without ever handing the coin to a custodian or a bridge contract. The coin stays spendable on Bitcoin once the timelock expires.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">What is dual staking?</summary><div class="cc221ec">Dual staking combines staked CORE with delegated Bitcoin in one position and applies a reward multiplier when both are present, with the multiplier tier set by the ratio between the two assets rather than the size of either one alone.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">Is CORE the only token I need for gas?</summary><div class="cc221ec">Yes. CORE is the native gas asset on Core DAO, and it also backs validator bonding and carries governance votes, separate from any BTC a holder has delegated for staking.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">How is Core DAO different from a Bitcoin bridge chain?</summary><div class="cc221ec">A bridge chain wraps BTC into a synthetic token that depends on the bridge's own solvency. This network's staking instead locks native BTC with a timelock on Bitcoin itself, so the coin never becomes a synthetic asset or leaves Bitcoin's own ledger.</div></details>
 <details class="c7097f4"><summary class="cefc4f3">Is Core DAO safe to use?</summary><div class="cc221ec">The hash-power delegation, validator set and every transaction are public and verifiable, which removes the need to take any security claim on faith. Risk still varies by validator choice and by the specific contracts used once assets are on the chain, so each should be checked on its own.</div></details>
-      </section>
-    </main>
-  </div>
-</div>
-<section class="c18a315" id="sources" aria-labelledby="sources-title">
-  <div class="c9cf391 c3e51a2">
-    <div class="cc9c25a"><h2 id="sources-title">Sources</h2><p>References for further reading.</p></div>
-    <div class="cc1a821"><ul class="c3436d0"><li><a class="caf1707" href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a></li>
+  </main>
+  <section class="c1bb761 c9cf391" id="sources" aria-labelledby="sources-title">
+    <h2 class="c2c371b" id="sources-title">Sources</h2>
+    <ul class="c3436d0"><li><a class="caf1707" href="https://docs.coredao.org/" rel="nofollow noopener" target="_blank">Core docs</a></li>
 <li><a class="caf1707" href="https://scan.coredao.org/" rel="nofollow noopener" target="_blank">Core explorer</a></li>
 <li><a class="caf1707" href="https://en.wikipedia.org/wiki/Bitcoin" rel="nofollow noopener" target="_blank">Bitcoin — Wikipedia</a></li>
-<li><a class="caf1707" href="https://defillama.com/chain/CORE" rel="nofollow noopener" target="_blank">Core DAO on DefiLlama</a></li></ul></div>
-  </div>
-</section>
-<footer class="c95b157">
-  <div class="c9cf391 c76152b">
-    <span class="cd90ee7">The guide</span>
-    <p class="c8b1226">Last updated <span>Updated Oct 11, 2026</span></p>
-  </div>
-</footer>
-<script>
-(() => {
-  const toc = document.getElementById('toc-list');
-  const sections = Array.from(document.querySelectorAll('#guide-sections .c214445'));
-  const fallback = toc.querySelector('[data-sections-link]');
-  const fragment = document.createDocumentFragment();
-  sections.forEach((section, index) => {
-    if (!section.id) {
-      const base = `guide-section-${index + 1}`;
-      let id = base;
-      let suffix = 1;
-      while (document.getElementById(id)) id = `${base}-${suffix++}`;
-      section.id = id;
-    }
-    const heading = section.querySelector('.cb3dd90, h2, h3');
-    const item = document.createElement('li');
-    const link = document.createElement('a');
-    link.className = 'toc-link';
-    link.href = `#${encodeURIComponent(section.id)}`;
-    link.textContent = heading?.textContent.trim() || section.getAttribute('aria-label') || `Section ${index + 1}`;
-    item.append(link);
-    fragment.append(item);
-  });
-  if (sections.length) fallback.parentElement.replaceWith(fragment);
-  const entries = Array.from(toc.querySelectorAll('a[href^="#"]')).map(link => {
-    const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
-    return { link, target };
-  }).filter(entry => entry.target);
-  if (!entries.length) return;
-  let activeLink;
-  let pending = false;
-  const activate = entry => {
-    if (!entry || entry.link === activeLink) return;
-    if (activeLink) activeLink.removeAttribute('aria-current');
-    entry.link.setAttribute('aria-current', 'location');
-    activeLink = entry.link;
-  };
-  const update = () => {
-    pending = false;
-    const boundary = Math.min(180, window.innerHeight * .25);
-    let active = entries[0];
-    for (const entry of entries) {
-      if (entry.target.getBoundingClientRect().top <= boundary) active = entry;
-    }
-    const root = document.scrollingElement || document.documentElement;
-    if (root.scrollHeight > window.innerHeight && Math.ceil(window.scrollY + window.innerHeight) >= root.scrollHeight - 2) {
-      active = entries[entries.length - 1];
-    }
-    activate(active);
-  };
-  const schedule = () => {
-    if (pending) return;
-    pending = true;
-    window.requestAnimationFrame(update);
-  };
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(schedule, {
-      rootMargin: '-12% 0px -60% 0px',
-      threshold: [0, .1, .5, 1]
-    });
-    entries.forEach(entry => observer.observe(entry.target));
-  }
-  toc.addEventListener('click', event => {
-    const link = event.target.closest('a');
-    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const entry = entries.find(item => item.link === link);
-    if (!entry) return;
-    event.preventDefault();
-    const hadTabindex = entry.target.hasAttribute('tabindex');
-    if (!hadTabindex) {
-      entry.target.setAttribute('tabindex', '-1');
-      entry.target.addEventListener('blur', () => entry.target.removeAttribute('tabindex'), { once: true });
-    }
-    entry.target.focus({ preventScroll: true });
-    entry.target.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'start'
-    });
-    if (window.location.hash !== link.hash) {
-      try { window.history.pushState(null, '', link.hash); } catch {}
-    }
-    activate(entry);
-  });
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', schedule, { passive: true });
-  window.addEventListener('hashchange', schedule);
-  window.addEventListener('load', schedule, { once: true });
-  update();
-})();
-</script>
+<li><a class="caf1707" href="https://defillama.com/chain/CORE" rel="nofollow noopener" target="_blank">Core DAO on DefiLlama</a></li></ul>
+  </section>
+  <footer class="c95b157">
+    <div class="c76152b c9cf391">
+      <p>Updated Oct 11, 2026</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const TOKENS = [
+        { s: 'ETH', f: 'eth', p: 2550 }, { s: 'BTC', f: 'btc', p: 62000 },
+        { s: 'USDT', f: 'usdt', p: 1 }, { s: 'USDC', f: 'usdc', p: 1 },
+        { s: 'BNB', f: 'bnb', p: 585 }, { s: 'SOL', f: 'sol', p: 145 },
+        { s: 'ARB', f: 'arb', p: 0.62 }, { s: 'OP', f: 'optimism', p: 1.65 },
+        { s: 'MATIC', f: 'polygon', p: 0.42 }, { s: 'AVAX', f: 'avalanche', p: 27 },
+        { s: 'SUI', f: 'sui', p: 1.35 }, { s: 'LTC', f: 'ltc', p: 72 },
+        { s: 'TRX', f: 'trx', p: 0.16 }, { s: 'XMR', f: 'xmr', p: 155 },
+        { s: 'XRP', f: 'xrp', p: 0.52 }, { s: 'ZEC', f: 'zec', p: 32 }
+      ];
+      const FEE = 0.003;
+      const $ = (id) => document.getElementById(id);
+      const payAmt = $('pay-amount'), payTok = $('pay-token'), payUsd = $('pay-usd'), payIco = $('pay-ico');
+      const getAmt = $('get-amount'), getTok = $('get-token'), getUsd = $('get-usd'), getIco = $('get-ico');
+      const rateEl = $('swap-rate');
+      const tok = (s) => TOKENS.find((t) => t.s === s);
+      const num = (n) => new Intl.NumberFormat('en', { maximumFractionDigits: n >= 1 ? 4 : 6 }).format(n);
+      const usd = (v) => '~$' + new Intl.NumberFormat('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v);
+      TOKENS.forEach((t) => {
+        [payTok, getTok].forEach((sel) => { const o = document.createElement('option'); o.value = t.s; o.textContent = t.s; sel.appendChild(o); });
+      });
+      payTok.value = 'ETH'; getTok.value = 'USDT';
+      const calc = () => {
+        const pf = tok(payTok.value), gt = tok(getTok.value);
+        payIco.src = 'assets/tokens/' + pf.f + '.svg'; payIco.alt = pf.s;
+        getIco.src = 'assets/tokens/' + gt.f + '.svg'; getIco.alt = gt.s;
+        rateEl.textContent = '1 ' + pf.s + ' ≈ ' + num(pf.p / gt.p) + ' ' + gt.s;
+        const a = parseFloat(payAmt.value);
+        if (!Number.isFinite(a) || a <= 0) { getAmt.textContent = '—'; payUsd.textContent = '—'; getUsd.textContent = '—'; return; }
+        const out = a * (pf.p / gt.p) * (1 - FEE);
+        getAmt.textContent = num(out) + ' ' + gt.s;
+        payUsd.textContent = usd(a * pf.p);
+        getUsd.textContent = usd(out * gt.p);
+      };
+      const distinct = (changed, other) => { if (changed.value === other.value) { other.value = (TOKENS.find((t) => t.s !== changed.value) || TOKENS[0]).s; } };
+      payAmt.addEventListener('input', calc);
+      payTok.addEventListener('change', () => { distinct(payTok, getTok); calc(); });
+      getTok.addEventListener('change', () => { distinct(getTok, payTok); calc(); });
+      $('swap-switch').addEventListener('click', () => { const t = payTok.value; payTok.value = getTok.value; getTok.value = t; calc(); });
+      calc();
+    })();
+  </script>
 </body>
 </html>
